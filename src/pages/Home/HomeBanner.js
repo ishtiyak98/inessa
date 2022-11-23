@@ -4,7 +4,7 @@ import styles from "./HomeBanner.module.css";
 const HomeBanner = () => {
   return (
     <section
-      className={`h-[88vh] bg-slate-500 flex justify-center items-center ${styles.banner_background}`}
+      className={`h-[90vh] bg-slate-500 flex justify-center items-center ${styles.banner_background}`}
     >
       <div className="max-w-[1600px] w-full">
         <div className="px-28 space-y-8">
