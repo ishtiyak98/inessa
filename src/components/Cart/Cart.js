@@ -41,14 +41,14 @@ const Cart = () => {
                 <p className="font-medium">Bright Light by Yana</p>
                 <div className="body-font text-sm">
                   <form onSubmit={handleForm}>
-                    <input
+                    <button
                       name="plusButton"
                       className="w-[30px] text-center outline-none inline px-2 py-1 border hover:cursor-pointer"
                       onClick={() => setQuantity(quantity - 1)}
                       disabled={quantity === 0}
-                      value={"-"}
-                      readOnly
-                    ></input>
+                    >
+                      -
+                    </button>
                     <input
                       type="number"
                       value={quantity}
@@ -58,14 +58,14 @@ const Cart = () => {
                       disabled={quantity === 5}
                       className="w-[50px] mb-4 px-2 py-1 text-center outline-none border-t border-b"
                     />
-                    <input
+                    <button
                       name="minusButton"
                       className="w-[30px] text-center outline-none inline px-2 py-1 border hover:cursor-pointer"
                       onClick={() => setQuantity(quantity + 1)}
                       disabled={quantity === 5}
-                      value="+"
-                      readOnly
-                    ></input>
+                    >
+                      +
+                    </button>
                   </form>
                 </div>
               </div>
@@ -74,9 +74,7 @@ const Cart = () => {
               <p className="text-2xl text-gray-400 flex justify-end">
                 <IoIosCloseCircleOutline></IoIosCloseCircleOutline>
               </p>
-              <p>
-                $2344
-              </p>
+              <p>$2344</p>
             </div>
           </div>
         </div>

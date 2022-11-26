@@ -1,0 +1,135 @@
+[
+    {
+        "id":"1",
+        "name": "BRIGHT LIGHT BY YANA",
+        "product_img": "https://i.ibb.co/KmKKPgB/asset-2.jpg",
+        "on_sale": false,
+        "previous_price": 0,
+        "current_price": 425,
+        "stars":"0.0",
+        "best_seller": true,
+        "category": ["women"]
+    },
+    {
+        "id":"2",
+        "name": "COOL BLUE PERFUME",
+        "product_img": "https://i.ibb.co/vxGCprb/asset-3.jpg",
+        "on_sale": false,
+        "previous_price": 0,
+        "current_price": 225,
+        "stars":"0.0",
+        "best_seller": true,
+        "category": ["exclusive","men"]
+    },
+    {
+        "id":"3",
+        "name": "DARK FANTASY BY VERRA",
+        "product_img": "https://i.ibb.co/1L7Vzc8/asset-1.jpg",
+        "on_sale": false,
+        "previous_price": 0,
+        "current_price": 300,
+        "stars":"0.0",
+        "best_seller": true,
+        "category": ["exclusive"]
+    },
+    {
+        "id":"4",
+        "name": "DELIGHTFUL BY SENETA",
+        "product_img": "https://i.ibb.co/Tqf7qR8/asset-4.jpg",
+        "on_sale": true,
+        "previous_price": 275,
+        "current_price": 199,
+        "stars":"0.0",
+        "best_seller": false,
+        "category": ["exclusive", "women"]
+    },
+    {
+        "id":"5",
+        "name": "ETERNITY BY BELLE",
+        "product_img": "https://i.ibb.co/PwGxC43/asset-5.jpg",
+        "on_sale": true,
+        "previous_price": 225,
+        "current_price": 285,
+        "stars":"0.0",
+        "best_seller": true,
+        "category": ["women"]
+    },
+    {
+        "id":"6",
+        "name": "GREEN ADVENTURE",
+        "product_img": "https://i.ibb.co/Z1Xn761/asset-6.jpg",
+        "on_sale": false,
+        "previous_price": 0,
+        "current_price": 375,
+        "stars":"0.0",
+        "best_seller": false,
+        "category": ["exclusive", "men"]
+    },
+    {
+        "id":"7",
+        "name": "GREEN EMERALD BY MILA",
+        "product_img": "https://i.ibb.co/QNMFL7m/asset-7.jpg",
+        "on_sale": true,
+        "previous_price": 350,
+        "current_price": 290,
+        "stars":"0.0",
+        "best_seller": false,
+        "category": ["women"]
+    },
+    {
+        "id":"8",
+        "name": "LIGHT BLUE BY SVT",
+        "product_img": "https://i.ibb.co/ZWpkbNT/asset-8.jpg",
+        "on_sale": true,
+        "previous_price": 250,
+        "current_price": 200,
+        "stars":"0.0",
+        "best_seller": false,
+        "category": ["men"]
+    },
+    {
+        "id":"9",
+        "name": "NIGHT AROMA FRAGRANCE",
+        "product_img": "https://i.ibb.co/7QqZCrx/asset-9.jpg",
+        "on_sale": false,
+        "previous_price": 0,
+        "current_price": 375,
+        "stars":"0.0",
+        "best_seller": false,
+        "category": ["exclusive", "men"]
+    },
+    {
+        "id":"10",
+        "name": "PINK EMOTIONS",
+        "product_img": "https://i.ibb.co/8jcr3Nv/asset-10.jpg",
+        "on_sale": true,
+        "previous_price": 485,
+        "current_price": 390,
+        "stars":"0.0",
+        "best_seller": false,
+        "category": ["women"]
+    },
+    {
+        "id":"11",
+        "name": "SWEET TRANSLUCENCE",
+        "product_img": "https://i.ibb.co/B40DHdP/asset-11.jpg",
+        "on_sale": true,
+        "previous_price": 375,
+        "current_price": 290,
+        "stars":"0.0",
+        "best_seller": false,
+        "category": ["exclusive", "women"]
+    },
+    {
+        "id":"12",
+        "name": "THE ELEGANT SCENT",
+        "product_img": "https://i.ibb.co/jL6PnPf/asset-12.jpg",
+        "on_sale": false,
+        "previous_price": 0,
+        "current_price": 225,
+        "stars":"0.0",
+        "best_seller": false,
+        "category": ["men"]
+    }
+
+]

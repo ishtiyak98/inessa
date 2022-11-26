@@ -1,14 +1,23 @@
-import React from "react";
-import Product1 from "../../assets/asset 5.jpeg";
-import Product2 from "../../assets/asset 6.jpeg";
-import Product3 from "../../assets/asset 7.jpeg";
-import Product4 from "../../assets/asset 8.jpeg";
-import Cart from "../../assets/cart.svg";
-import { MdStarOutline } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
-import ReactTooltip from "react-tooltip";
+import React, { useEffect, useState } from "react";
+import ProductCard from "../../components/ProductCard.js/ProductCard";
+import COCO from "../../assets/asset 17.jpeg";
+import CHANEL from "../../assets/asset 9.jpeg";
+import Girl from "../../assets/asset 10.jpeg";
 
 const BestSeller = () => {
+  const [bestSellerProducts, setBestSellerProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("products.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const filterData = data.filter(
+          (product) => product?.best_seller === true
+        );
+        setBestSellerProducts(filterData);
+      });
+  }, []);
+
   return (
     <section className="py-[100px] px-28 g max-w-[1600px] w-full m-auto">
       <div className="space-y-5 text-center mb-12">
@@ -20,217 +29,31 @@ const BestSeller = () => {
         </h2>
       </div>
       <div className="grid lg:grid-cols-4 gap-x-4">
-        <div>
-          <div className="relative group cursor-pointer">
-            <div>
-              <img src={Product1} alt="" className="w-full" />
-            </div>
-            <div className="hidden group-hover:block">
-              <div
-                data-tip
-                data-for="CartIcon"
-                className=" absolute top-4 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-              >
-                <img src={Cart} alt="" width={16} />
-                <ReactTooltip
-                  place="left"
-                  type="dark"
-                  effect="solid"
-                  id="CartIcon"
-                >
-                  <span>Add to cart</span>
-                </ReactTooltip>
-              </div>
-              <div
-                data-tip
-                data-for="sadFace"
-                className="absolute top-16 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-              >
-                <FaEye></FaEye>
-                <ReactTooltip
-                  place="left"
-                  type="dark"
-                  effect="solid"
-                  id="sadFace"
-                >
-                  <span>Quick View</span>
-                </ReactTooltip>
-              </div>
-            </div>
+        {bestSellerProducts.map((product) => (
+          <ProductCard key={product.id} product={product}></ProductCard>
+        ))}
+      </div>
+      <div className="grid grid-cols-2 gap-x-4 mt-14">
+        <div className="grid grid-cols-2 gap-x-4">
+          <div className="bg-red-500 h-fit">
+            <img src={CHANEL} alt="" />
           </div>
-          <div className="body-font py-4 px-2 space-y-1">
-            <p className="text-sm text-gray-400">Exclusive</p>
-            <p className="uppercase font-medium">cool blue perfume</p>
-            <div className="flex text-gray-600 text-lg">
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-            </div>
-            <p className="text-gray-600 font-bold">$255.00</p>
+          <div className="bg-red-500 h-fit">
+            <img src={Girl} alt="" />
           </div>
-        </div>
-        <div>
-          <div className="relative group cursor-pointer">
-            <div>
-              <img src={Product2} alt="" className="w-full" />
-            </div>
-            <div className="hidden group-hover:block">
-              <div
-                data-tip
-                data-for="CartIcon"
-                className=" absolute top-4 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-              >
-                <img src={Cart} alt="" width={16} />
-                <ReactTooltip
-                  place="left"
-                  type="dark"
-                  effect="solid"
-                  id="CartIcon"
-                >
-                  <span>Add to cart</span>
-                </ReactTooltip>
+          <div className="col-span-2 gap-x-4">
+            <h2 className="text-5xl text-center heading-font py-6">
+              THE NEW FRAGRANCE <br /> THAT WILL SURPRISE YOU <br /> EVERY DAY
+            </h2>
+            <div className="flex justify-center my-4">
+              <div className="uppercase body-font font-medium px-6 py-3 bg-black text-white  inline-block tracking-[2px] hover:cursor-pointer">
+                Discover
               </div>
-              <div
-                data-tip
-                data-for="sadFace"
-                className="absolute top-16 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-              >
-                <FaEye></FaEye>
-                <ReactTooltip
-                  place="left"
-                  type="dark"
-                  effect="solid"
-                  id="sadFace"
-                >
-                  <span>Quick View</span>
-                </ReactTooltip>
-              </div>
-            </div>
-          </div>
-          <div className="body-font py-4 px-2 space-y-1">
-            <p className="text-sm text-gray-400">Women</p>
-            <p className="uppercase font-medium">cool blue perfume</p>
-            <div className="flex text-gray-600 text-lg">
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-            </div>
-            <p className="text-gray-600 font-bold">$255.00</p>
-          </div>
-        </div>
-        <div>
-          <div className="relative group cursor-pointer">
-            <div>
-              <img src={Product3} alt="" className="w-full" />
-            </div>
-            <div className="absolute top-4 left-4">
-              <p className="font-medium bg-[#fcfcfc] inline-block px-4 py-1 rounded-full shadow-md ">
-                sale!
-              </p>
-            </div>
-            <div className="hidden group-hover:block">
-              <div
-                data-tip
-                data-for="CartIcon"
-                className="absolute top-4 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-              >
-                <img src={Cart} alt="" width={16} />
-                <ReactTooltip
-                  place="left"
-                  type="dark"
-                  effect="solid"
-                  id="CartIcon"
-                >
-                  <span>Add to cart</span>
-                </ReactTooltip>
-              </div>
-              <div
-                data-tip
-                data-for="sadFace"
-                className="absolute top-16 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-              >
-                <FaEye></FaEye>
-                <ReactTooltip
-                  place="left"
-                  type="dark"
-                  effect="solid"
-                  id="sadFace"
-                >
-                  <span>Quick View</span>
-                </ReactTooltip>
-              </div>
-            </div>
-          </div>
-          <div className="body-font py-4 px-2 space-y-1">
-            <p className="text-sm text-gray-400">Women</p>
-            <p className="uppercase font-medium">cool blue perfume</p>
-            <div className="flex text-gray-600 text-lg">
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-            </div>
-            <div className="flex space-x-2">
-              <p className="text-gray-400 font-bold line-through">$185.00</p>
-              <p className="text-gray-600 font-bold">$185.00</p>
             </div>
           </div>
         </div>
-        <div>
-          <div className="relative group cursor-pointer">
-            <div>
-              <img src={Product4} alt="" className="w-full" />
-            </div>
-            <div className="hidden group-hover:block">
-              <div
-                data-tip
-                data-for="CartIcon"
-                className=" absolute top-4 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-              >
-                <img src={Cart} alt="" width={16} />
-                <ReactTooltip
-                  place="left"
-                  type="dark"
-                  effect="solid"
-                  id="CartIcon"
-                >
-                  <span>Add to cart</span>
-                </ReactTooltip>
-              </div>
-              <div
-                data-tip
-                data-for="sadFace"
-                className="absolute top-16 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-              >
-                <FaEye></FaEye>
-                <ReactTooltip
-                  place="left"
-                  type="dark"
-                  effect="solid"
-                  id="sadFace"
-                >
-                  <span>Quick View</span>
-                </ReactTooltip>
-              </div>
-            </div>
-          </div>
-          <div className="body-font py-4 px-2 space-y-1">
-            <p className="text-sm text-gray-400">Exclusive</p>
-            <p className="uppercase font-medium">cool blue perfume</p>
-            <div className="flex text-gray-600 text-lg">
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-              <MdStarOutline></MdStarOutline>
-            </div>
-            <p className="text-gray-600 font-bold">$255.00</p>
-          </div>
+        <div className="overflow-hidden">
+          <img src={COCO} alt="" />
         </div>
       </div>
     </section>
