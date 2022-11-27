@@ -74,7 +74,7 @@ const ProductCard = ({ product }) => {
             </p>
           </div>
         ) : (
-          <p className="text-gray-600 font-bold">$255.00</p>
+          <p className="text-gray-600 font-bold">${product.current_price}.00</p>
         )}
       </div>
     </div>

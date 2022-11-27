@@ -18,7 +18,7 @@ const Cart = () => {
   };
   return (
     <div className=" bg-white z-30 sidebar">
-      <div className="sidebar-content w-[450px] h-[100%]">
+      <div className="sidebar-content w-[100%] lg:w-[450px] h-[100%]">
         <div className="flex justify-between items-center py-5 px-5 body-font border-b-[2px] border-b-gray-400">
           <div>
             <p className="font-semibold">Shopping Cart</p>
