@@ -6,7 +6,7 @@ import UpperImage2 from "../../assets/asset 4.jpeg";
 
 const ProductHighlight = () => {
   return (
-    <section className="py-[100px] px-28 g max-w-[1600px] w-full m-auto">
+    <section className="py-[100px] px-28 max-w-[1600px] w-full m-auto">
       <div className="grid lg:grid-cols-2 items-center">
         <div className="relative">
           <div className="absolute h-full flex items-center">

@@ -19,7 +19,7 @@ const BestSeller = () => {
   }, []);
 
   return (
-    <section className="py-[100px] px-28 g max-w-[1600px] w-full m-auto">
+    <section className="py-[100px] px-28 max-w-[1600px] w-full m-auto">
       <div className="space-y-5 text-center mb-12">
         <p className="uppercase heading-font text-lg font-bold tracking-[2px]">
           OUR ORIGINAL PERFUME

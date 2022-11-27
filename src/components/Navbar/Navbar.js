@@ -11,7 +11,7 @@ const Navbar = () => {
   const { cartState, setCartState } = useContext(NavStateContext);
   return (
     <>
-      <nav className="body-font relative bg-white text-sm font-medium flex justify-between items-center px-20 py-8">
+      <nav className="body-font relative bg-white shadow-sm text-sm font-medium flex justify-between items-center px-20 py-8">
         <div className="space-x-6 uppercase">
           <Link to={"/shop"}>buy perfumes</Link>
           <Link to={"/exclusive"}>exclusive</Link>
