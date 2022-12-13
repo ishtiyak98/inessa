@@ -12,7 +12,7 @@ const ProductCard2 = ({ product }) => {
           <div className="overflow-hidden">
             <img
               src={product.product_img}
-              alt=""
+              alt="product_img"
               className="w-full hover:scale-110 transition-transform duration-300"
             />
           </div>

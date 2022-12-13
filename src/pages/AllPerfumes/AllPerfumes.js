@@ -7,6 +7,7 @@ import { FaList } from "react-icons/fa";
 import ProductCard from "../../components/ProductCard.js/ProductCard";
 import Footer from "../../components/Footer/Footer";
 import ProductCard2 from "../../components/ProductCard.js/ProductCard2";
+import { Helmet } from "react-helmet";
 const AllPerfumes = () => {
   const [sortState, setSortState] = useState(false);
   const [dataGrid, setDataGrid] = useState(false);
@@ -55,6 +56,10 @@ const AllPerfumes = () => {
   return (
     <>
       <Navbar></Navbar>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Shop - Inessa Perfumes </title>
+      </Helmet>
       <section className="pt-[20px] lg:pt-[50px] pb-[20px] lg:pb-[100px] px-4 lg:px-28 max-w-[1600px] w-full m-auto">
         <div className="mb-4 lg:mb-10">
           <h4 className="body-font">Home / Shop</h4>
@@ -120,7 +125,7 @@ const AllPerfumes = () => {
           className={`grid grid-cols-1 ${
             dataGrid
               ? "lg:grid-cols-2 gap-y-12 gap-x-5"
-              : "lg:grid-cols-4 gap-4"
+              : "lg:grid-cols-4 gap-5"
           }`}
         >
           {allProducts.map((product) =>
