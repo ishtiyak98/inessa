@@ -6,11 +6,14 @@ import { IoGridSharp } from "react-icons/io5";
 import { FaList } from "react-icons/fa";
 import ProductCard from "../../components/ProductCard.js/ProductCard";
 import Footer from "../../components/Footer/Footer";
+import ProductCard2 from "../../components/ProductCard.js/ProductCard2";
 const AllPerfumes = () => {
   const [sortState, setSortState] = useState(false);
+  const [dataGrid, setDataGrid] = useState(false);
   const [sortName, setSortName] = useState("Default sorting");
   const [allProducts, setAllProducts] = useState([]);
 
+  console.log(dataGrid);
   useEffect(() => {
     fetch("products.json")
       .then((res) => res.json())
@@ -52,17 +55,17 @@ const AllPerfumes = () => {
   return (
     <>
       <Navbar></Navbar>
-      <section className="pt-[50px] pb-[100px] px-4 lg:px-28 max-w-[1600px] w-full m-auto">
-        <div className="mb-10">
+      <section className="pt-[20px] lg:pt-[50px] pb-[20px] lg:pb-[100px] px-4 lg:px-28 max-w-[1600px] w-full m-auto">
+        <div className="mb-4 lg:mb-10">
           <h4 className="body-font">Home / Shop</h4>
           <h2 className="heading-font text-4xl uppercase">Shop</h2>
         </div>
-        <div className="hidden lg:flex justify-between items-center mb-10">
+        <div className="flex flex-wrap justify-between items-center mb-10 space-y-2 lg:space-y-0">
           <div className="flex items-center space-x-2 hover:cursor-pointer">
             <VscSettings className="rotate-90 text-xl"></VscSettings>
             <h4 className="body-font font-medium">Filter Products</h4>
           </div>
-          <div className="flex justify-between items-center space-x-8">
+          <div className="w-full lg:w-auto flex justify-between items-center lg:space-x-10">
             <div className="relative">
               <div
                 className="flex items-center space-x-6 cursor-pointer prevent-select"
@@ -97,16 +100,36 @@ const AllPerfumes = () => {
               )}
             </div>
             <div className="flex items-center space-x-4">
-              <IoGridSharp className="text-xl cursor-pointer"></IoGridSharp>
-              <FaList className="text-xl cursor-pointer "></FaList>
+              <IoGridSharp
+                className={`text-xl cursor-pointer ${
+                  dataGrid ? "text-gray-400" : "text-black"
+                } `}
+                onClick={() => setDataGrid(false)}
+              ></IoGridSharp>
+              <FaList
+                className={`text-xl cursor-pointer ${
+                  dataGrid ? "text-black" : "text-gray-400"
+                } `}
+                onClick={() => setDataGrid(true)}
+              ></FaList>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 ">
-          {allProducts.map((product) => (
-            <ProductCard key={product.id} product={product}></ProductCard>
-          ))}
+        <div
+          className={`grid grid-cols-1 ${
+            dataGrid
+              ? "lg:grid-cols-2 gap-y-12 gap-x-5"
+              : "lg:grid-cols-4 gap-4"
+          }`}
+        >
+          {allProducts.map((product) =>
+            dataGrid ? (
+              <ProductCard2 key={product.id} product={product}></ProductCard2>
+            ) : (
+              <ProductCard key={product.id} product={product}></ProductCard>
+            )
+          )}
         </div>
       </section>
       <Footer></Footer>
@@ -115,3 +138,6 @@ const AllPerfumes = () => {
 };
 
 export default AllPerfumes;
+
+//grid grid-cols-1 lg:grid-cols-4 gap-4
+//<ProductCard key={product.id} product={product}></ProductCard>
