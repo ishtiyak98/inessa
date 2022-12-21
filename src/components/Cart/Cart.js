@@ -5,8 +5,14 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import CartImageSample from "../../assets/asset 6.jpeg";
 import "./Cart.css";
 
+import { actionTypes } from "../../state/ProductState/actionTypes";
+import { AllProductContext } from "../../context/ProductContext";
+
 const Cart = () => {
-  const { cartState, setCartState } = useContext(NavStateContext);
+  const {
+    state: { cartShow },
+    dispatch,
+  } = useContext(AllProductContext);
   const [quantity, setQuantity] = useState(0);
 
   const quantityChange = (e) => {
@@ -25,7 +31,7 @@ const Cart = () => {
           </div>
           <div
             className="text-2xl cursor-pointer"
-            onClick={() => setCartState(false)}
+            onClick={() => dispatch({ type: actionTypes.CART_CLOSE })}
           >
             <AiOutlineClose></AiOutlineClose>
           </div>

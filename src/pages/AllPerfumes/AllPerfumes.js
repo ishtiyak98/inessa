@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { VscSettings } from "react-icons/vsc";
 import { SlArrowDown } from "react-icons/sl";
@@ -8,20 +8,20 @@ import ProductCard from "../../components/ProductCard.js/ProductCard";
 import Footer from "../../components/Footer/Footer";
 import ProductCard2 from "../../components/ProductCard.js/ProductCard2";
 import { Helmet } from "react-helmet";
+import { useContext } from "react";
+import { actionTypes } from "../../state/ProductState/actionTypes";
+import { AllProductContext } from "../../context/ProductContext";
+
 const AllPerfumes = () => {
   const [sortState, setSortState] = useState(false);
   const [dataGrid, setDataGrid] = useState(false);
   const [sortName, setSortName] = useState("Default sorting");
-  const [allProducts, setAllProducts] = useState([]);
 
-  console.log(dataGrid);
-  useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllProducts(data);
-      });
-  }, []);
+  const {
+    state: { products }, dispatch} = useContext(AllProductContext);
+
+  const allProducts = products;
+  console.log(products);
 
   const handleDefaultSorting = () => {
     setSortState(false);
@@ -29,7 +29,10 @@ const AllPerfumes = () => {
     fetch("products.json")
       .then((res) => res.json())
       .then((data) => {
-        setAllProducts(data);
+        dispatch({ type: actionTypes.FETCHING_SUCCESS, payload: data });
+      })
+      .catch(() => {
+        dispatch({ type: actionTypes.FETCHING_ERROR });
       });
   };
 
@@ -40,7 +43,7 @@ const AllPerfumes = () => {
     const sortedProducts = allProductsClone.sort(
       (a, b) => a.current_price - b.current_price
     );
-    setAllProducts(sortedProducts);
+    // setAllProducts(sortedProducts);
     console.log(sortedProducts);
   };
 
@@ -56,10 +59,10 @@ const AllPerfumes = () => {
   return (
     <>
       <Navbar></Navbar>
-      <Helmet>
+      {/* <Helmet>
         <meta charSet="utf-8" />
         <title>Shop - Inessa Perfumes </title>
-      </Helmet>
+      </Helmet> */}
       <section className="pt-[20px] lg:pt-[50px] pb-[20px] lg:pb-[100px] px-4 lg:px-28 max-w-[1600px] w-full m-auto">
         <div className="mb-4 lg:mb-10">
           <h4 className="body-font">Home / Shop</h4>

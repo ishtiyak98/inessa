@@ -3,20 +3,22 @@ import ProductCard from "../../components/ProductCard.js/ProductCard";
 import COCO from "../../assets/asset 17.jpeg";
 import CHANEL from "../../assets/asset 9.jpeg";
 import Girl from "../../assets/asset 10.jpeg";
+import { useContext } from "react";
+import { AllProductContext } from "../../context/ProductContext";
 
 const BestSeller = () => {
   const [bestSellerProducts, setBestSellerProducts] = useState([]);
 
+  const {
+    state: { products },
+  } = useContext(AllProductContext);
+
   useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const filterData = data.filter(
-          (product) => product?.best_seller === true
-        );
-        setBestSellerProducts(filterData);
-      });
-  }, []);
+    const filterData = products.filter(
+      (product) => product?.best_seller === true
+    );
+    setBestSellerProducts(filterData);
+  }, [products]);
 
   return (
     <section className="py-[100px] px-28 max-w-[1600px] w-full m-auto">

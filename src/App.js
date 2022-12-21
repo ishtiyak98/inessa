@@ -1,42 +1,21 @@
-import { createContext, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
+import ProductContext from "./context/ProductContext";
 import AllPerfumes from "./pages/AllPerfumes/AllPerfumes";
 import Home from "./pages/Home/Home";
 
-export const NavStateContext = createContext("navState");
-
 function App() {
-  const [cartState, setCartState] = useState(false);
-  console.log(cartState);
   return (
     <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <NavStateContext.Provider
-              value={{ cartState: cartState, setCartState }}
-            >
-              <Home></Home>
-            </NavStateContext.Provider>
-          }
-        ></Route>
-        <Route
-          path="/shop"
-          element={
-            <NavStateContext.Provider
-              value={{ cartState: cartState, setCartState }}
-            >
-              <AllPerfumes></AllPerfumes>
-            </NavStateContext.Provider>
-          }
-        ></Route>
-        <Route path="/exclusive" element={<Home></Home>}></Route>
-        <Route path="/product-category/women" element={<Home></Home>}></Route>
-        <Route path="/product-category/men" element={<Home></Home>}></Route>
-      </Routes>
+      <ProductContext>
+        <Routes>
+          <Route path="/" element={<Home></Home>}></Route>
+          <Route path="/shop" element={<AllPerfumes></AllPerfumes>}></Route>
+          <Route path="/exclusive" element={<Home></Home>}></Route>
+          <Route path="/product-category/women" element={<Home></Home>}></Route>
+          <Route path="/product-category/men" element={<Home></Home>}></Route>
+        </Routes>
+      </ProductContext>
     </>
   );
 }

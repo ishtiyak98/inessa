@@ -8,10 +8,10 @@ import ProductHighlight from "./ProductHighlight";
 const Home = () => {
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <meta charSet="utf-8" />
         <title>Home - Inessa Perfumes </title>
-      </Helmet>
+      </Helmet> */}
       <Navbar></Navbar>
       <HomeBanner></HomeBanner>
       <ProductHighlight></ProductHighlight>

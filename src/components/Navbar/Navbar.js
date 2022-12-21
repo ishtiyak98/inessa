@@ -3,13 +3,18 @@ import Logo from "../../assets/asset 0.png";
 import CartImage from "../../assets/cart.svg";
 import User from "../../assets/user.svg";
 import { Link } from "react-router-dom";
-import { NavStateContext } from "../../App";
+
 import "./Navbar.css";
 import Cart from "../Cart/Cart";
 import { FiMenu } from "react-icons/fi";
+import { AllProductContext } from "../../context/ProductContext";
+import { actionTypes } from "../../state/ProductState/actionTypes";
 
 const Navbar = () => {
-  const { cartState, setCartState } = useContext(NavStateContext);
+  const {
+    state: { cartShow },
+    dispatch,
+  } = useContext(AllProductContext);
   return (
     <>
       <nav className="body-font relative bg-white shadow-sm text-sm font-medium flex justify-between items-center px-4 lg:px-20 py-4 lg:py-8">
@@ -32,7 +37,7 @@ const Navbar = () => {
           <div className="hover:cursor-pointer flex items-center">
             <div
               className="relative"
-              onClick={() => setCartState((prevState) => !prevState)}
+              onClick={() => dispatch({ type: actionTypes.CART_OPEN })}
             >
               <img src={CartImage} alt="" width={20} />
               <div className="absolute -top-4 -right-4 bg-black text-white w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs shadow-md">
@@ -48,7 +53,7 @@ const Navbar = () => {
           <div className="hover:cursor-pointer flex items-center pt-4">
             <div
               className="relative"
-              onClick={() => setCartState((prevState) => !prevState)}
+              onClick={() => dispatch({ type: actionTypes.CART_OPEN })}
             >
               <img src={CartImage} alt="" width={20} />
               <div className="absolute -top-4 -right-4 bg-black text-white w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs shadow-md">
@@ -62,7 +67,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {cartState && <Cart></Cart>}
+      {cartShow && <Cart></Cart>}
     </>
   );
 };
