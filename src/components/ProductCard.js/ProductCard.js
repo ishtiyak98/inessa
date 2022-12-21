@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Cart from "../../assets/cart.svg";
 import { MdStarOutline } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
+import { AllProductContext } from "../../context/ProductContext";
+import { actionTypes } from "../../state/ProductState/actionTypes";
 
 const ProductCard = ({ product }) => {
+  const { dispatch } = useContext(AllProductContext);
   return (
     <div className="cursor-pointer">
       <div className="relative group cursor-pointer">
@@ -28,6 +31,7 @@ const ProductCard = ({ product }) => {
             data-tip
             data-for="CartIcon"
             className="absolute top-4 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
+            onClick={()=> dispatch({type: actionTypes.ADD_TO_CART, payload: product})}
           >
             <img src={Cart} alt="" width={16} />
             <ReactTooltip place="left" type="dark" effect="solid" id="CartIcon">

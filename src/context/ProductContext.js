@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect } from "react";
 import { useReducer } from "react";
 import { actionTypes } from "../state/ProductState/actionTypes";
 import {
@@ -9,7 +9,6 @@ import {
 export const AllProductContext = createContext();
 
 const ProductContext = ({ children }) => {
-  const [cartState, setCartState] = useState(false);
   const [state, dispatch] = useReducer(productReducer, initialState);
 
   console.log(state);
@@ -29,7 +28,11 @@ const ProductContext = ({ children }) => {
     state,
     dispatch,
   };
-  return <AllProductContext.Provider value={value}>{children}</AllProductContext.Provider>;
+  return (
+    <AllProductContext.Provider value={value}>
+      {children}
+    </AllProductContext.Provider>
+  );
 };
 
 export default ProductContext;

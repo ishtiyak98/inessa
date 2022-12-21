@@ -12,7 +12,7 @@ import { actionTypes } from "../../state/ProductState/actionTypes";
 
 const Navbar = () => {
   const {
-    state: { cartShow },
+    state: { cartShow, myCart },
     dispatch,
   } = useContext(AllProductContext);
   return (
@@ -41,7 +41,7 @@ const Navbar = () => {
             >
               <img src={CartImage} alt="" width={20} />
               <div className="absolute -top-4 -right-4 bg-black text-white w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs shadow-md">
-                <span className="">0</span>
+                <span className="">{myCart.length}</span>
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
             >
               <img src={CartImage} alt="" width={20} />
               <div className="absolute -top-4 -right-4 bg-black text-white w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs shadow-md">
-                <span className="">0</span>
+                <span className="">{myCart.length}</span>
               </div>
             </div>
           </div>
