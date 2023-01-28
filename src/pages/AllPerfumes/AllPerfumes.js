@@ -16,16 +16,24 @@ const AllPerfumes = () => {
   const [sortState, setSortState] = useState(false);
   const [dataGrid, setDataGrid] = useState(false);
   const [sortName, setSortName] = useState("Default sorting");
-
+  const [activeDefaultSort, setActiveDefaultSort] = useState(true);
+  const [priceLowSort, setPriceLowSort] = useState(false);
+  const [priceHighSort, setPriceHighSort] = useState(false);
   const {
-    state: { products }, dispatch} = useContext(AllProductContext);
+    state: { products },
+    dispatch,
+  } = useContext(AllProductContext);
 
   const allProducts = products;
   console.log(products);
 
   const handleDefaultSorting = () => {
+    setPriceHighSort(false);
+    setActiveDefaultSort(true);
+    setPriceLowSort(false);
     setSortState(false);
     setSortName("Default sorting");
+
     fetch("products.json")
       .then((res) => res.json())
       .then((data) => {
@@ -37,6 +45,9 @@ const AllPerfumes = () => {
   };
 
   const handlePriceLowToHigh = () => {
+    setPriceHighSort(false);
+    setActiveDefaultSort(false);
+    setPriceLowSort(true);
     setSortState(false);
     setSortName("Sort by price : low to high");
     const allProductsClone = allProducts;
@@ -48,6 +59,9 @@ const AllPerfumes = () => {
   };
 
   const handlePriceHighToLow = () => {
+    setPriceHighSort(true);
+    setActiveDefaultSort(false);
+    setPriceLowSort(false);
     setSortState(false);
     setSortName("Sort by price : high to low");
     const sortedProducts = allProducts.sort(
@@ -85,7 +99,13 @@ const AllPerfumes = () => {
               {sortState && (
                 <div className="absolute left-0 top-8 z-20 bg-white shadow-lg  w-[260px] divide-y divide-gray-400">
                   <div className="" onClick={handleDefaultSorting}>
-                    <p className="body-font text-slate-600 hover:text-white hover:bg-blue-600 px-3 py-1 prevent-select cursor-pointer">
+                    <p
+                      className={`body-font ${
+                        !activeDefaultSort && "text-slate-600"
+                      } hover:text-white hover:bg-blue-600 ${
+                        activeDefaultSort && "bg-blue-600 text-white"
+                      } px-3 py-1 prevent-select cursor-pointer`}
+                    >
                       Default sorting
                     </p>
                   </div>
@@ -95,12 +115,24 @@ const AllPerfumes = () => {
                     </p>
                   </div>
                   <div className="" onClick={handlePriceLowToHigh}>
-                    <p className="body-font text-slate-600 hover:text-white hover:bg-blue-600 px-3 py-1 prevent-select cursor-pointer">
+                    <p
+                      className={`body-font ${
+                        !priceLowSort && "text-slate-600"
+                      } hover:text-white hover:bg-blue-600 ${
+                        priceLowSort && "bg-blue-600 text-white"
+                      } px-3 py-1 prevent-select cursor-pointer`}
+                    >
                       Sort by price : low to high
                     </p>
                   </div>
                   <div className="" onClick={handlePriceHighToLow}>
-                    <p className="body-font text-slate-600 hover:text-white hover:bg-blue-600 px-3 py-1 prevent-select cursor-pointer">
+                    <p
+                      className={`body-font ${
+                        !priceHighSort && "text-slate-600"
+                      } hover:text-white hover:bg-blue-600 ${
+                        priceHighSort && "bg-blue-600 text-white"
+                      } px-3 py-1 prevent-select cursor-pointer`}
+                    >
                       Sort by price : high to low
                     </p>
                   </div>

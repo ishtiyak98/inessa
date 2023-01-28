@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import BestSeller from "./BestSeller";
 import HomeBanner from "./HomeBanner";
@@ -16,6 +17,7 @@ const Home = () => {
       <HomeBanner></HomeBanner>
       <ProductHighlight></ProductHighlight>
       <BestSeller></BestSeller>
+      <Footer></Footer>
     </>
   );
 };

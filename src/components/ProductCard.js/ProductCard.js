@@ -5,11 +5,16 @@ import { FaEye } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
 import { AllProductContext } from "../../context/ProductContext";
 import { actionTypes } from "../../state/ProductState/actionTypes";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const { dispatch } = useContext(AllProductContext);
+  const navigate = useNavigate();
   return (
-    <div className="cursor-pointer">
+    <div
+      className="cursor-pointer"
+      onClick={()=>navigate(`/product_${product.id}`)}
+    >
       <div className="relative group cursor-pointer">
         <div className="overflow-hidden">
           <img
@@ -31,7 +36,9 @@ const ProductCard = ({ product }) => {
             data-tip
             data-for="CartIcon"
             className="absolute top-4 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-            onClick={()=> dispatch({type: actionTypes.ADD_TO_CART, payload: product})}
+            onClick={() =>
+              dispatch({ type: actionTypes.ADD_TO_CART, payload: product })
+            }
           >
             <img src={Cart} alt="" width={16} />
             <ReactTooltip place="left" type="dark" effect="solid" id="CartIcon">

@@ -42,7 +42,7 @@ export const productReducer = (state, action) => {
     case actionTypes.ADD_TO_CART:
       return {
         ...state,
-        myCart: [...state.myCart, action.payload],
+        myCart: [...state.myCart, { ...action.payload, quantity: 1 }],
       };
     default:
       return state;

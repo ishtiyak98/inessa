@@ -22,7 +22,7 @@ const Navbar = () => {
           <div className="space-x-6 hidden lg:block">
             <Link to={"/shop"}>buy perfumes</Link>
             <Link to={"/exclusive"}>exclusive</Link>
-            <Link to={"/product-category/women"}>women</Link>
+            <Link to={"/women"}>women</Link>
             <Link to={"/product-category/men"}>men</Link>
           </div>
         </div>

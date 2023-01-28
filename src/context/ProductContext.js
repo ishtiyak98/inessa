@@ -12,6 +12,7 @@ const ProductContext = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
 
   console.log(state);
+  
   useEffect(() => {
     dispatch({ type: actionTypes.FETCHING_START });
     fetch("products.json")
@@ -19,8 +20,9 @@ const ProductContext = ({ children }) => {
       .then((data) => {
         dispatch({ type: actionTypes.FETCHING_SUCCESS, payload: data });
       })
-      .catch(() => {
+      .catch((err) => {
         dispatch({ type: actionTypes.FETCHING_ERROR });
+        console.log(err);
       });
   }, []);
 
