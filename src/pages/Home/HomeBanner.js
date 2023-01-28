@@ -7,11 +7,11 @@ const HomeBanner = () => {
       className={`h-[90vh] bg-slate-500 flex justify-center items-center ${styles.banner_background}`}
     >
       <div className="max-w-[1600px] w-full">
-        <div className="px-28 space-y-8">
+        <div className="px-5 lg:px-28 space-y-4 lg:space-y-8">
           <p className="uppercase heading-font text-lg font-bold tracking-[2px]">
             member's days
           </p>
-          <h1 className="uppercase heading-font text-8xl leading-[82px]">
+          <h1 className="uppercase heading-font text-6xl lg:text-8xl leading-[70px] lg:leading-[82px]">
             Your <br /> exclusive <br /> sitewide <br /> offer awaits
           </h1>
           <div className="uppercase body-font font-medium px-6 py-3 bg-black text-white inline-block tracking-[2px] hover:cursor-pointer">

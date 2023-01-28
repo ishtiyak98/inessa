@@ -6,22 +6,22 @@ import UpperImage2 from "../../assets/asset 4.jpeg";
 
 const ProductHighlight = () => {
   return (
-    <section className="py-[100px] px-28 max-w-[1600px] w-full m-auto">
+    <section className="py-[100px] px-5 lg:px-28 max-w-[1600px] w-full m-auto">
       <div className="grid lg:grid-cols-2 items-center">
         <div className="relative">
           <div className="absolute h-full flex items-center">
-            <img src={UpperImage} width={280} alt="" />
+            <img src={UpperImage} className="w-[200px] lg:w-[280px]" alt="" />
           </div>
           <div className="ml-[140px]">
-            <img src={LeftImage} alt="" />
+            <img src={LeftImage} className="" alt="" />
           </div>
         </div>
-        <div className="text-right space-y-10 ml-4">
+        <div className="text-right space-y-10 mt-10 lg:mt-0 ml-4">
           <div className="space-y-5">
             <p className="uppercase heading-font text-lg font-bold tracking-[2px]">
               OUR ORIGINAL PERFUME
             </p>
-            <h1 className="uppercase heading-font text-8xl leading-[82px]">
+            <h1 className="uppercase heading-font text-4xl lg:text-8xl lg:leading-[82px]">
               The <br /> new <br /> FRAGRANCE
             </h1>
             <p className="body-font">
@@ -34,21 +34,21 @@ const ProductHighlight = () => {
           </div>
         </div>
       </div>
-      <div className="grid lg:grid-cols-2 items-center">
-        <div className="relative order-last">
+      <div className="grid lg:grid-cols-2 items-center mt-14 lg:mt-0">
+        <div className="relative order-first lg:order-last ">
           <div className="absolute right-0 h-full flex items-center">
-            <img src={UpperImage2} width={280} alt="" />
+            <img src={UpperImage2} className="w-[200px] lg:w-[280px]" alt="" />
           </div>
           <div className="mr-[140px]">
             <img src={RightImage} alt="" />
           </div>
         </div>
-        <div className="space-y-10 order-first mr-4">
+        <div className="space-y-10 order-last mt-10 lg:mt-0 lg:order-first mr-4">
           <div className="space-y-5">
             <p className="uppercase heading-font text-lg font-bold tracking-[2px]">
               EAU DE TOILETTE
             </p>
-            <h1 className="uppercase heading-font text-8xl leading-[82px]">
+            <h1 className="uppercase heading-font text-4xl lg:text-8xl lg:leading-[82px]">
               INSTINCTIVE <br /> AND <br /> ELECTRIC
             </h1>
             <p className="body-font">
