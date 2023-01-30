@@ -8,7 +8,7 @@
         "on_sale": false,
         "previous_price": 0,
         "current_price": 425,
-        "stars":"0.0",
+        "stars":4,
         "best_seller": true,
         "Shipping_cost":0,
         "category": ["women"]
@@ -22,7 +22,7 @@
         "on_sale": false,
         "previous_price": 0,
         "current_price": 225,
-        "stars":"0.0",
+        "stars":5,
         "best_seller": true,
         "Shipping_cost":0,
         "category": ["exclusive","men"]
@@ -36,7 +36,7 @@
         "on_sale": false,
         "previous_price": 0,
         "current_price": 300,
-        "stars":"0.0",
+        "stars":5,
         "best_seller": true,
         "Shipping_cost":0,
         "category": ["exclusive"]
@@ -50,7 +50,7 @@
         "on_sale": true,
         "previous_price": 275,
         "current_price": 199,
-        "stars":"0.0",
+        "stars":5,
         "best_seller": false,
         "Shipping_cost":0,
         "category": ["exclusive", "women"]
@@ -64,7 +64,7 @@
         "on_sale": true,
         "previous_price": 225,
         "current_price": 285,
-        "stars":"0.0",
+        "stars":4,
         "best_seller": true,
         "Shipping_cost":0,
         "category": ["women"]
@@ -78,7 +78,7 @@
         "on_sale": false,
         "previous_price": 0,
         "current_price": 375,
-        "stars":"0.0",
+        "stars":4,
         "best_seller": false,
         "Shipping_cost":0,
         "category": ["exclusive", "men"]
@@ -92,7 +92,7 @@
         "on_sale": true,
         "previous_price": 350,
         "current_price": 290,
-        "stars":"0.0",
+        "stars":5,
         "best_seller": false,
         "Shipping_cost":0,
         "category": ["women"]
@@ -106,7 +106,7 @@
         "on_sale": true,
         "previous_price": 250,
         "current_price": 200,
-        "stars":"0.0",
+        "stars":5,
         "best_seller": false,
         "Shipping_cost":0,
         "category": ["men"]
@@ -120,7 +120,7 @@
         "on_sale": false,
         "previous_price": 0,
         "current_price": 375,
-        "stars":"0.0",
+        "stars":3.0,
         "best_seller": false,
         "category": ["exclusive", "men"]
     },
@@ -133,7 +133,7 @@
         "on_sale": true,
         "previous_price": 485,
         "current_price": 390,
-        "stars":"0.0",
+        "stars":5,
         "best_seller": false,
         "Shipping_cost":0,
         "category": ["women"]
@@ -147,7 +147,7 @@
         "on_sale": true,
         "previous_price": 375,
         "current_price": 290,
-        "stars":"0.0",
+        "stars":4,
         "best_seller": false,
         "Shipping_cost":0,
         "category": ["exclusive", "women"]
@@ -161,7 +161,7 @@
         "on_sale": false,
         "previous_price": 0,
         "current_price": 225,
-        "stars":"0.0",
+        "stars":5,
         "best_seller": false,
         "Shipping_cost":0,
         "category": ["men"]

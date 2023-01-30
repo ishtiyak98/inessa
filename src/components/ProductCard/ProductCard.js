@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Cart from "../../assets/cart.svg";
-import { MdStarOutline } from "react-icons/md";
+import { BsStarFill } from "react-icons/bs";
+import { BsStar } from "react-icons/bs";
 import { FaEye } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
 import { AllProductContext } from "../../context/ProductContext";
@@ -13,7 +14,7 @@ const ProductCard = ({ product }) => {
   return (
     <div
       className="cursor-pointer"
-      onClick={()=>navigate(`/product_${product.id}`)}
+      onClick={() => navigate(`/product_${product.id}`)}
     >
       <div className="relative group cursor-pointer">
         <div className="overflow-hidden">
@@ -68,12 +69,34 @@ const ProductCard = ({ product }) => {
             <p className="text-sm text-gray-400">Women</p>
           ))}
         <p className="uppercase font-medium">{product.name}</p>
-        <div className="flex text-gray-600 text-lg">
-          <MdStarOutline></MdStarOutline>
-          <MdStarOutline></MdStarOutline>
-          <MdStarOutline></MdStarOutline>
-          <MdStarOutline></MdStarOutline>
-          <MdStarOutline></MdStarOutline>
+        <div className="flex text-gray-600 text-sm space-x-[1px]">
+          {product.stars === 5.0 && (
+            <>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+            </>
+          )}
+          {product.stars === 4.0 && (
+            <>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStar></BsStar>
+            </>
+          )}
+          {product.stars === 3.0 && (
+            <>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStar></BsStar>
+              <BsStar></BsStar>
+            </>
+          )}
         </div>
         {product.on_sale ? (
           <div className="flex space-x-2">

@@ -1,0 +1,36 @@
+.filter-sidebar{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */   
+}
+
+.filter-sidebar-content{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background-color: #fefefe;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: leftAnimation;
+    animation-duration: 0.3s;
+    -webkit-animation-name: leftAnimation;
+    -webkit-animation-duration: 0.3s; 
+}
+
+/* ::-webkit-scrollbar{
+    display: none;
+} */
+
+/* Add Animation */
+@-webkit-keyframes leftAnimation {
+    from {left:-300px; opacity:0} 
+    to {left:0; opacity:1}
+  }
+  
+@keyframes leftAnimation {
+    from {left:-300px; opacity:0}
+    to {left:0; opacity:1}
+}

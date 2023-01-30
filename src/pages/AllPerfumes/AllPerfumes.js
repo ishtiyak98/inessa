@@ -4,13 +4,14 @@ import { VscSettings } from "react-icons/vsc";
 import { SlArrowDown } from "react-icons/sl";
 import { IoGridSharp } from "react-icons/io5";
 import { FaList } from "react-icons/fa";
-import ProductCard from "../../components/ProductCard.js/ProductCard";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import Footer from "../../components/Footer/Footer";
-import ProductCard2 from "../../components/ProductCard.js/ProductCard2";
-import { Helmet } from "react-helmet";
+import ProductCard2 from "../../components/ProductCard/ProductCard2";
+// import { Helmet } from "react-helmet";
 import { useContext } from "react";
 import { actionTypes } from "../../state/ProductState/actionTypes";
 import { AllProductContext } from "../../context/ProductContext";
+import FilterBar from "../../components/FilterBar/FilterBar";
 
 const AllPerfumes = () => {
   const [sortState, setSortState] = useState(false);
@@ -20,12 +21,12 @@ const AllPerfumes = () => {
   const [priceLowSort, setPriceLowSort] = useState(false);
   const [priceHighSort, setPriceHighSort] = useState(false);
   const {
-    state: { products },
+    state: { products, filterShow },
     dispatch,
   } = useContext(AllProductContext);
 
   const allProducts = products;
-  console.log(products);
+  console.log(filterShow);
 
   const handleDefaultSorting = () => {
     setPriceHighSort(false);
@@ -83,7 +84,10 @@ const AllPerfumes = () => {
           <h2 className="heading-font text-4xl uppercase">Shop</h2>
         </div>
         <div className="flex flex-wrap justify-between items-center mb-10 space-y-2 lg:space-y-0">
-          <div className="flex items-center space-x-2 hover:cursor-pointer">
+          <div
+            className="flex items-center space-x-2 hover:cursor-pointer"
+            onClick={() => dispatch({ type: actionTypes.FILTER_OPEN })}
+          >
             <VscSettings className="rotate-90 text-xl"></VscSettings>
             <h4 className="body-font font-medium">Filter Products</h4>
           </div>
@@ -172,6 +176,7 @@ const AllPerfumes = () => {
           )}
         </div>
       </section>
+      {filterShow && <FilterBar></FilterBar>}
       <Footer></Footer>
     </>
   );

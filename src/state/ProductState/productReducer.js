@@ -6,6 +6,7 @@ export const initialState = {
   error: false,
   cartShow: false,
   myCart: [],
+  filterShow: false,
 };
 
 export const productReducer = (state, action) => {
@@ -38,6 +39,16 @@ export const productReducer = (state, action) => {
       return {
         ...state,
         cartShow: false,
+      };
+      case actionTypes.FILTER_OPEN:
+      return {
+        ...state,
+        filterShow: !state.filterShow,
+      };
+    case actionTypes.FILTER_CLOSE:
+      return {
+        ...state,
+        filterShow: false,
       };
     case actionTypes.ADD_TO_CART:
       return {

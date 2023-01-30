@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "../../components/ProductCard.js/ProductCard";
+
 import COCO from "../../assets/asset 17.jpeg";
 import CHANEL from "../../assets/asset 9.jpeg";
 import Girl from "../../assets/asset 10.jpeg";
 import { useContext } from "react";
 import { AllProductContext } from "../../context/ProductContext";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 const BestSeller = () => {
   const [bestSellerProducts, setBestSellerProducts] = useState([]);

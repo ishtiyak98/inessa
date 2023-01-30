@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import "./Cart.css";
 import { actionTypes } from "../../state/ProductState/actionTypes";
 import { AllProductContext } from "../../context/ProductContext";
+import { MdClose } from "react-icons/md";
 
 const Cart = () => {
   const {
@@ -30,7 +30,7 @@ const Cart = () => {
             className="text-2xl cursor-pointer"
             onClick={() => dispatch({ type: actionTypes.CART_CLOSE })}
           >
-            <AiOutlineClose></AiOutlineClose>
+             <MdClose></MdClose>
           </div>
         </div>
 

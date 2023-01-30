@@ -22,29 +22,32 @@ const ProductDetails = () => {
   const [onImgHover, setOnImgHover] = useState(false);
 
   const productDetails = products?.find((item) => item.id === id);
-  console.log("acasc", productDetails);
 
   const images = productDetails?.more_img?.map((item) => {
-    const obj = { original: item, thumbnail: item, thumbnailClass: " hover:border-none" };
+    const obj = {
+      original: item,
+      thumbnail: item,
+      thumbnailClass: " hover:border-none",
+    };
     return obj;
   });
 
   const [quantity, setQuantity] = useState(0);
 
+  console.log(quantity);
   const quantityChange = (e) => {
     setQuantity(parseInt(e.target.value));
   };
 
   const handleForm = (e) => {
     e.preventDefault();
-    console.log("object");
   };
 
   return (
     <>
       <Navbar></Navbar>
       <section className="pt-[20px]  lg:pt-[50px] pb-[20px] lg:pb-[100px] px-4 lg:px-28 max-w-[1600px] w-full m-auto">
-        <div className="grid lg:grid-cols-2 gap-x-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-x-12 gap-y-6 items-center">
           <div className="">
             {products.length > 0 && (
               <ImageGallery
@@ -62,15 +65,24 @@ const ProductDetails = () => {
               />
             )}
           </div>
-          <div className="space-y-6">
-            <h2 className="text-[36px] heading-font font-semibold">{productDetails?.name}</h2>
+          <div className="space-y-4 lg:space-y-6">
+            <h2 className="text-[36px] heading-font font-semibold">
+              {productDetails?.name}
+            </h2>
             <h4 className="body-font text-[28px] text-gray-700 font-bold">
               ${productDetails?.current_price}.00
-              <span className="text-[18px] font-medium mx-2 text-gray-500">+ {productDetails?.shipping ? productDetails?.shipping :"Free Shipping"}</span>
+              <span className="text-[18px] font-medium mx-2 text-gray-500">
+                +{" "}
+                {productDetails?.shipping
+                  ? productDetails?.shipping
+                  : "Free Shipping"}
+              </span>
             </h4>
-            <p className="body-font text-[16px] text-gray-500">{productDetails?.desc}</p>
+            <p className="body-font text-[16px] text-gray-500">
+              {productDetails?.desc}
+            </p>
             <div className="body-font text-sm">
-              <form onSubmit={handleForm} >
+              <form onSubmit={handleForm}>
                 <button
                   name="plusButton"
                   className="w-[30px] text-center outline-none inline px-2 py-2 border hover:cursor-pointer"
@@ -102,10 +114,18 @@ const ProductDetails = () => {
                   className="px-8 py-2 mx-6 font-bold  text-white bg-gray-900 hover:cursor-pointer"
                 ></input>
               </form>
+              {quantity >= 5 && (
+                <p className="text-red-500 text-sm mt-4">
+                  <span className="font-semibold">Note:</span> You can't add
+                  more than 5 items in a single order
+                </p>
+              )}
             </div>
             <div>
               <fieldset className="border-[1px]">
-                <legend className="text-center body-font text-[16px] font-bold text-gray-500 px-3">Guaranteed Safe Checkout</legend>
+                <legend className="text-center body-font text-[16px] font-bold text-gray-500 px-3">
+                  Guaranteed Safe Checkout
+                </legend>
                 <div className="text-[45px] flex justify-center space-x-4 py-4 text-gray-500">
                   <FaCcVisa></FaCcVisa>
                   <FaCcMastercard></FaCcMastercard>

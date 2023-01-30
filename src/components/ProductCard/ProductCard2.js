@@ -1,6 +1,7 @@
 import React from "react";
 import Cart from "../../assets/cart.svg";
-import { MdStarOutline } from "react-icons/md";
+import { BsStarFill } from "react-icons/bs";
+import { BsStar } from "react-icons/bs";
 import { FaEye } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
 
@@ -69,12 +70,34 @@ const ProductCard2 = ({ product }) => {
             <p className="text-sm text-gray-400">Women</p>
           ))}
         <p className="uppercase font-medium">{product.name}</p>
-        <div className="flex text-gray-600 text-lg">
-          <MdStarOutline></MdStarOutline>
-          <MdStarOutline></MdStarOutline>
-          <MdStarOutline></MdStarOutline>
-          <MdStarOutline></MdStarOutline>
-          <MdStarOutline></MdStarOutline>
+        <div className="flex text-gray-600 text-sm space-x-[1px]">
+          {product.stars === 5.0 && (
+            <>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+            </>
+          )}
+          {product.stars === 4.0 && (
+            <>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStar></BsStar>
+            </>
+          )}
+          {product.stars === 3.0 && (
+            <>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStarFill className="text-amber-500"></BsStarFill>
+              <BsStar></BsStar>
+              <BsStar></BsStar>
+            </>
+          )}
         </div>
         {product.on_sale ? (
           <div className="flex space-x-2">
@@ -89,9 +112,7 @@ const ProductCard2 = ({ product }) => {
           <p className="text-gray-600 font-bold">${product.current_price}.00</p>
         )}
         <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non
-          proident.
+          {product.desc}
         </p>
       </div>
     </div>
