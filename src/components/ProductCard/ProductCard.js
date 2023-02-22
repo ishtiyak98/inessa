@@ -14,10 +14,9 @@ const ProductCard = ({ product }) => {
   return (
     <div
       className="cursor-pointer"
-      onClick={() => navigate(`/product_${product.id}`)}
     >
       <div className="relative group cursor-pointer">
-        <div className="overflow-hidden">
+        <div className="overflow-hidden" onClick={() => navigate(`/product_${product.id}`)}>
           <img
             src={product.product_img}
             alt=""

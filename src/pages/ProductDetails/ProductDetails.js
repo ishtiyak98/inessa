@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
@@ -23,6 +23,10 @@ const ProductDetails = () => {
 
   const productDetails = products?.find((item) => item.id === id);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const images = productDetails?.more_img?.map((item) => {
     const obj = {
       original: item,

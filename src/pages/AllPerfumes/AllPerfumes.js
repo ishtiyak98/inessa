@@ -26,7 +26,6 @@ const AllPerfumes = () => {
   } = useContext(AllProductContext);
 
   const allProducts = products;
-  console.log(filterShow);
 
   const handleDefaultSorting = () => {
     setPriceHighSort(false);

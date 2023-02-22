@@ -40,7 +40,7 @@ export const productReducer = (state, action) => {
         ...state,
         cartShow: false,
       };
-      case actionTypes.FILTER_OPEN:
+    case actionTypes.FILTER_OPEN:
       return {
         ...state,
         filterShow: !state.filterShow,
@@ -51,10 +51,50 @@ export const productReducer = (state, action) => {
         filterShow: false,
       };
     case actionTypes.ADD_TO_CART:
+      const checkDuplicate = state.myCart.find(
+        (item) => item.id === action.payload.id
+      );
+      console.log(checkDuplicate);
+      if (checkDuplicate) {
+        if (checkDuplicate.quantity >= 5) {
+          return state;
+        } else {
+          return {
+            ...state,
+            myCart: [
+              ...state.myCart.filter((item) => item.id !== checkDuplicate.id),
+              { ...checkDuplicate, quantity: checkDuplicate.quantity + 1 },
+            ],
+          };
+        }
+      } else {
+        return {
+          ...state,
+          myCart: [...state.myCart, { ...action.payload, quantity: 1 }],
+        };
+      }
+
+    case actionTypes.CART_ITEM_QTY_DECREASE:
+      const updatedQtyItem = state.myCart.find(
+        (item) => item.id === action.payload.id
+      );
+      
       return {
         ...state,
-        myCart: [...state.myCart, { ...action.payload, quantity: 1 }],
+        myCart: [
+          ...state.myCart.filter((item) => item.id !== updatedQtyItem.id),
+          { ...updatedQtyItem, quantity: updatedQtyItem.quantity - 1 },
+        ],
       };
+
+    case actionTypes.CART_ITEM_REMOVE:
+      console.log("del")
+      return{
+        ...state,
+        myCart:[
+          ...state.myCart.filter(item => item.id !== action.payload.id)
+        ]
+      }
     default:
       return state;
   }
