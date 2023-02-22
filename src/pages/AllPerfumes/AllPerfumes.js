@@ -160,10 +160,10 @@ const AllPerfumes = () => {
         </div>
 
         <div
-          className={`grid grid-cols-1 ${
+          className={`grid  ${
             dataGrid
-              ? "lg:grid-cols-2 gap-y-12 gap-x-5"
-              : "lg:grid-cols-4 gap-5"
+              ? "grid-cols-1 lg:grid-cols-2 gap-y-12 gap-x-5"
+              : "grid-cols-2 lg:grid-cols-4 gap-5"
           }`}
         >
           {allProducts.map((product) =>

@@ -63,14 +63,26 @@ export const productReducer = (state, action) => {
             ...state,
             myCart: [
               ...state.myCart.filter((item) => item.id !== checkDuplicate.id),
-              { ...checkDuplicate, quantity: checkDuplicate.quantity + 1 },
+              {
+                ...checkDuplicate,
+                quantity: checkDuplicate.quantity + 1,
+                buyingPrice:
+                  action.payload.current_price * (checkDuplicate.quantity + 1),
+              },
             ],
           };
         }
       } else {
         return {
           ...state,
-          myCart: [...state.myCart, { ...action.payload, quantity: 1 }],
+          myCart: [
+            ...state.myCart,
+            {
+              ...action.payload,
+              quantity: 1,
+              buyingPrice: action.payload.current_price,
+            },
+          ],
         };
       }
 
@@ -78,23 +90,27 @@ export const productReducer = (state, action) => {
       const updatedQtyItem = state.myCart.find(
         (item) => item.id === action.payload.id
       );
-      
       return {
         ...state,
         myCart: [
           ...state.myCart.filter((item) => item.id !== updatedQtyItem.id),
-          { ...updatedQtyItem, quantity: updatedQtyItem.quantity - 1 },
+          {
+            ...updatedQtyItem,
+            quantity: updatedQtyItem.quantity - 1,
+            buyingPrice:
+              action.payload.current_price * (updatedQtyItem.quantity - 1),
+          },
         ],
       };
 
     case actionTypes.CART_ITEM_REMOVE:
-      console.log("del")
-      return{
+      console.log("del");
+      return {
         ...state,
-        myCart:[
-          ...state.myCart.filter(item => item.id !== action.payload.id)
-        ]
-      }
+        myCart: [
+          ...state.myCart.filter((item) => item.id !== action.payload.id),
+        ],
+      };
     default:
       return state;
   }

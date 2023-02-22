@@ -20,10 +20,11 @@ const Cart = () => {
   const handleForm = (e) => {
     e.preventDefault();
   };
+
   return (
-    <div className="sidebar bg-white z-30">
+    <div className="sidebar bg-white z-30 ">
       <div className="sidebar-content w-[100%] lg:w-[450px] min-h-[100%]">
-        <div className="flex justify-between items-center py-5 px-5 body-font border-b-[2px] border-b-gray-400">
+        <div className="flex sticky top-0 right-0 bg-white justify-between items-center py-5 px-5 body-font border-b-[2px] border-b-gray-400">
           <div>
             <p className="font-semibold">Shopping Cart</p>
           </div>
@@ -31,7 +32,7 @@ const Cart = () => {
             className="text-2xl cursor-pointer"
             onClick={() => dispatch({ type: actionTypes.CART_CLOSE })}
           >
-            <MdClose></MdClose>
+            <IoIosCloseCircleOutline></IoIosCloseCircleOutline>
           </div>
         </div>
 
@@ -49,15 +50,22 @@ const Cart = () => {
                       <div className="body-font text-sm">
                         <form onSubmit={handleForm}>
                           <button
-                            name="plusButton"
+                            name="minusButton"
                             className="w-[30px] text-center outline-none inline px-2 py-1 border hover:cursor-pointer"
                             onClick={() =>
-                              dispatch({
-                                type: actionTypes.CART_ITEM_QTY_DECREASE,
-                                payload: item,
-                              })
+                              dispatch(
+                                item.quantity === 1
+                                  ? {
+                                      type: actionTypes.CART_ITEM_REMOVE,
+                                      payload: item,
+                                    }
+                                  : {
+                                      type: actionTypes.CART_ITEM_QTY_DECREASE,
+                                      payload: item,
+                                    }
+                              )
                             }
-                            disabled={item.quantity === 0}
+                            // disabled={item.quantity === 0}
                           >
                             -
                           </button>
@@ -71,7 +79,7 @@ const Cart = () => {
                             className="w-[50px] mb-0 px-2 py-1  text-center outline-none border-t border-b"
                           />
                           <button
-                            name="minusButton"
+                            name="plusButton"
                             className="w-[30px] text-center outline-none inline px-2 py-1 border hover:cursor-pointer"
                             onClick={() =>
                               dispatch({
@@ -100,7 +108,7 @@ const Cart = () => {
                       {/* <IoIosCloseCircleOutline></IoIosCloseCircleOutline> */}
                       <HiOutlineTrash></HiOutlineTrash>
                     </p>
-                    <p>${item.current_price}</p>
+                    <p>${item.buyingPrice}</p>
                   </div>
                 </div>
               </div>
@@ -113,6 +121,31 @@ const Cart = () => {
             </h1>
           </div>
         )}
+
+        {
+          myCart.length && <div className="sticky bottom-0 right-0 bg-white body-font mt-8">
+          <div className="flex justify-between items-center py-3 border-y-[2px] border-y-gray-400">
+            <p className="font-semibold px-5">Subtotal: </p>
+            <p className="font-semibold px-5">
+              $
+              {myCart
+                .map((item) => item.buyingPrice)
+                .reduce((x, y) => {
+                  return x + y;
+                }, 0)}
+            </p>
+          </div>
+
+          <div className="space-y-3 py-4 px-5">
+            <div className="text-center cursor-pointer border-[2px] border-black text-black py-4 font-semibold tracking-widest text-sm">
+              VIEW CART
+            </div>
+            <div className="text-center cursor-pointer bg-black text-white py-4 font-semibold tracking-widest text-sm">
+              CHECKOUT
+            </div>
+          </div>
+        </div>
+        }
       </div>
     </div>
   );
