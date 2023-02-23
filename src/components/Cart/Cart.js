@@ -84,7 +84,7 @@ const Cart = () => {
                             onClick={() =>
                               dispatch({
                                 type: actionTypes.ADD_TO_CART,
-                                payload: item,
+                                payload: {...item, trigger: false},
                               })
                             }
                             disabled={quantity === 5}

@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import Cart from "../../assets/cart.svg";
 import { BsStarFill } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";
 import { FaEye } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
+import { useNavigate } from "react-router-dom";
+import { AllProductContext } from "../../context/ProductContext";
+import { actionTypes } from "../../state/ProductState/actionTypes";
 
 const ProductCard2 = ({ product }) => {
+  const { dispatch } = useContext(AllProductContext);
+  const navigate = useNavigate();
   return (
     <div className="flex lg:items-center space-x-5">
       <div>
         <div className="relative group cursor-pointer w-[120px] lg:w-[210px]">
-          <div className="overflow-hidden">
+          <div className="overflow-hidden" onClick={() => navigate(`/product_${product.id}`)}>
             <img
               src={product.product_img}
               alt="product_img"
@@ -30,6 +35,9 @@ const ProductCard2 = ({ product }) => {
               data-tip
               data-for="CartIcon"
               className="absolute top-4 right-3 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
+              onClick={() =>
+                dispatch({ type: actionTypes.ADD_TO_CART, payload: product })
+              }
             >
               <img src={Cart} alt="" width={16} />
               <ReactTooltip
@@ -111,9 +119,7 @@ const ProductCard2 = ({ product }) => {
         ) : (
           <p className="text-gray-600 font-bold">${product.current_price}.00</p>
         )}
-        <p>
-          {product.desc}
-        </p>
+        <p>{product.desc}</p>
       </div>
     </div>
   );

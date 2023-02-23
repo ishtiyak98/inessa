@@ -56,7 +56,7 @@ export const productReducer = (state, action) => {
       );
       console.log(checkDuplicate);
       if (checkDuplicate) {
-        if (checkDuplicate.quantity >= 5) {
+        if (action.payload.quantity >= 5) {
           return state;
         } else {
           return {
@@ -65,7 +65,9 @@ export const productReducer = (state, action) => {
               ...state.myCart.filter((item) => item.id !== checkDuplicate.id),
               {
                 ...checkDuplicate,
-                quantity: checkDuplicate.quantity + 1,
+                quantity: action.payload.trigger
+                  ? action.payload.quantity
+                  : checkDuplicate.quantity + 1,
                 buyingPrice:
                   action.payload.current_price * (checkDuplicate.quantity + 1),
               },
@@ -79,7 +81,7 @@ export const productReducer = (state, action) => {
             ...state.myCart,
             {
               ...action.payload,
-              quantity: 1,
+              quantity: action.payload.quantity ? action.payload.quantity : 1,
               buyingPrice: action.payload.current_price,
             },
           ],

@@ -12,40 +12,47 @@ import { FaCcMastercard } from "react-icons/fa";
 import { FaCcDiscover } from "react-icons/fa";
 import { FaCcPaypal } from "react-icons/fa";
 import { FaCcApplePay } from "react-icons/fa";
+import { actionTypes } from "../../state/ProductState/actionTypes";
 
 const ProductDetails = () => {
   const {
-    state: { products },
+    state: { products, myCart },
     dispatch,
   } = useContext(AllProductContext);
   const { id } = useParams();
   const [onImgHover, setOnImgHover] = useState(false);
 
-  const productDetails = products?.find((item) => item.id === id);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
-  const images = productDetails?.more_img?.map((item) => {
-    const obj = {
-      original: item,
-      thumbnail: item,
-      thumbnailClass: " hover:border-none",
-    };
-    return obj;
-  });
 
-  const [quantity, setQuantity] = useState(0);
+  const productDetails = products?.find((item) => item.id === id);
+  const [quantity, setQuantity] = useState(
+    myCart?.find((item) => item.id === productDetails.id)
+      ? myCart?.find((item) => item.id === productDetails.id).quantity
+      : 0
+  );
 
   console.log(quantity);
+
   const quantityChange = (e) => {
     setQuantity(parseInt(e.target.value));
   };
 
   const handleForm = (e) => {
     e.preventDefault();
+    console.log("first");
+    dispatch({ type: actionTypes.ADD_TO_CART, payload: {...productDetails, trigger: true, quantity: quantity}})
   };
+
+  const images = productDetails?.more_img?.map((item) => {
+    const obj = {
+      original: item,
+      thumbnail: item,
+      thumbnailClass: "hover:border-none",
+    };
+    return obj;
+  });
 
   return (
     <>
@@ -87,14 +94,14 @@ const ProductDetails = () => {
             </p>
             <div className="body-font text-sm">
               <form onSubmit={handleForm}>
-                <button
-                  name="plusButton"
+                <input
+                  type={"button"}
+                  name="minusButton"
                   className="w-[30px] text-center outline-none inline px-2 py-2 border hover:cursor-pointer"
-                  onClick={() => setQuantity(quantity - 1)}
+                  onClick={() => setQuantity(parseInt(quantity) - 1)}
                   disabled={quantity === 0}
-                >
-                  -
-                </button>
+                  value="-"
+                ></input>
                 <input
                   type="number"
                   value={quantity}
@@ -104,14 +111,14 @@ const ProductDetails = () => {
                   disabled={quantity === 5}
                   className="w-[50px] px-2 py-2 mb-0 text-center outline-none border-t border-b"
                 />
-                <button
-                  name="minusButton"
+                <input
+                  type={"button"}
+                  name="plusButton"
                   className="w-[30px] text-center outline-none inline px-2 py-2 border hover:cursor-pointer"
                   onClick={() => setQuantity(quantity + 1)}
-                  disabled={quantity === 5}
-                >
-                  +
-                </button>
+                  disabled={parseInt(quantity) === 5}
+                  value="+"
+                ></input>
                 <input
                   type="submit"
                   value={"ADD TO CART"}
