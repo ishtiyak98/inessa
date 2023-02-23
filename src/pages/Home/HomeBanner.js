@@ -18,7 +18,6 @@ const HomeBanner = () => {
             signup now
           </div>
         </div>
-        
       </div>
     </section>
   );

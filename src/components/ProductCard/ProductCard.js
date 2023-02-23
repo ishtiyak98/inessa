@@ -7,16 +7,24 @@ import ReactTooltip from "react-tooltip";
 import { AllProductContext } from "../../context/ProductContext";
 import { actionTypes } from "../../state/ProductState/actionTypes";
 import { useNavigate } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 const ProductCard = ({ product }) => {
   const { dispatch } = useContext(AllProductContext);
   const navigate = useNavigate();
+  const { addToast } = useToasts();
+
+  const addToCartHandler = (product) => {
+    dispatch({ type: actionTypes.ADD_TO_CART, payload: product });
+    addToast("Product added in the cart!", { appearance: "success" });
+  };
   return (
-    <div
-      className="cursor-pointer"
-    >
+    <div className="cursor-pointer">
       <div className="relative group cursor-pointer">
-        <div className="overflow-hidden" onClick={() => navigate(`/product_${product.id}`)}>
+        <div
+          className="overflow-hidden"
+          onClick={() => navigate(`/product_${product.id}`)}
+        >
           <img
             src={product.product_img}
             alt=""
@@ -36,9 +44,7 @@ const ProductCard = ({ product }) => {
             data-tip
             data-for="CartIcon"
             className="absolute top-4 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-            onClick={() =>
-              dispatch({ type: actionTypes.ADD_TO_CART, payload: product })
-            }
+            onClick={() => addToCartHandler(product)}
           >
             <img src={Cart} alt="" width={16} />
             <ReactTooltip place="left" type="dark" effect="solid" id="CartIcon">

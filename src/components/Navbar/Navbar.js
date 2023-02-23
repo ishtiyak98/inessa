@@ -17,7 +17,7 @@ const Navbar = () => {
   } = useContext(AllProductContext);
   return (
     <>
-      <nav className="body-font relative bg-white shadow-sm text-sm font-medium flex justify-between items-center px-4 lg:px-20 py-4 lg:py-8">
+      <nav className="body-font sticky top-0 z-20 bg-white shadow-sm text-sm font-medium flex justify-between items-center px-4 lg:px-20 py-4 lg:py-8">
         <div className=" uppercase">
           <div className="space-x-6 hidden lg:block">
             <Link to={"/shop"}>buy perfumes</Link>
