@@ -5,7 +5,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useContext } from "react";
 import { AllProductContext } from "../../context/ProductContext";
 import ImageGallery from "react-image-gallery";
-import ReactImageMagnify from "react-image-magnify";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaCcVisa } from "react-icons/fa";
 import { FaCcMastercard } from "react-icons/fa";
@@ -48,7 +47,7 @@ const ProductDetails = () => {
       type: actionTypes.ADD_TO_CART,
       payload: { ...productDetails, trigger: true, quantity: quantity },
     });
-    addToast("Product added in the cart!", { appearance: "success" });
+    // addToast("Product added in the cart!", { appearance: "success" });
   };
 
   const images = productDetails?.more_img?.map((item) => {

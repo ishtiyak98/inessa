@@ -75,33 +75,16 @@ const ProductCard = ({ product }) => {
           ))}
         <p className="uppercase font-medium">{product.name}</p>
         <div className="flex text-gray-600 text-sm space-x-[1px]">
-          {product.stars === 5.0 && (
-            <>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-            </>
-          )}
-          {product.stars === 4.0 && (
-            <>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStar></BsStar>
-            </>
-          )}
-          {product.stars === 3.0 && (
-            <>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStarFill className="text-amber-500"></BsStarFill>
-              <BsStar></BsStar>
-              <BsStar></BsStar>
-            </>
-          )}
+          {Array(product.stars)
+            .fill("star")
+            .map((item, index) => (
+              <BsStarFill key={index} className="text-amber-500"></BsStarFill>
+            ))}
+          {Array(5 - parseInt(product.stars))
+            .fill("star")
+            .map((item, index) => (
+              <BsStar key={index}></BsStar>
+            ))}
         </div>
         {product.on_sale ? (
           <div className="flex space-x-2">

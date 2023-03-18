@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { VscSettings } from "react-icons/vsc";
 import { SlArrowDown } from "react-icons/sl";
@@ -26,6 +26,11 @@ const AllPerfumes = () => {
   } = useContext(AllProductContext);
 
   const allProducts = products;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
   const handleDefaultSorting = () => {
     setPriceHighSort(false);

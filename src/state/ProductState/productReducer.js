@@ -83,6 +83,7 @@ export const productReducer = (state, action) => {
               ...action.payload,
               quantity: action.payload.quantity ? action.payload.quantity : 1,
               buyingPrice: action.payload.current_price,
+              cartPosition: state.myCart.length + 1,
             },
           ],
         };
