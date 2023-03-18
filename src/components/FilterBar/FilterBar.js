@@ -3,18 +3,17 @@ import { MdClose } from "react-icons/md";
 import { AllProductContext } from "../../context/ProductContext";
 import { actionTypes } from "../../state/ProductState/actionTypes";
 import "./FilterBar.css";
-
 import Slider from "@mui/material/Slider";
 import { Link } from "react-router-dom";
-import ProductCard2 from "../ProductCard/ProductCard2";
 import ProductCardSmall from "../ProductCard/ProductCardSmall";
+import { red } from "@mui/material/colors";
 
 const FilterBar = () => {
   const {
-    state: { products },
+    state: { products, rangeFilter },
     dispatch,
   } = useContext(AllProductContext);
-  const [value, setValue] = useState([180, 430]);
+  const [value, setValue] = useState([...rangeFilter]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -24,15 +23,12 @@ const FilterBar = () => {
   const handleChange = (event, newValue) => {
     console.log("sacascsac", newValue);
     setValue(newValue);
+    dispatch({ type: actionTypes.SET_RANGE_FILTER, payload: newValue });
   };
-
-  function valuetext(value) {
-    return `${value}°C`;
-  }
 
   return (
     <div className=" bg-white z-30 filter-sidebar">
-      <div className="filter-sidebar-content w-[100%] lg:w-[350px] min-h-[100%]">
+      <div className="filter-sidebar-content w-[100%] lg:w-[380px] min-h-[100%]">
         <div className="flex justify-between items-center py-5 px-5 body-font border-b-[2px] border-b-gray-400">
           <div>
             <p className="font-semibold">Filter Product</p>
@@ -61,14 +57,16 @@ const FilterBar = () => {
           </form>
 
           <div className="px-2 space-y-2">
+            <h2 className="heading-font text-2xl">Filter By Price </h2>
             <Slider
-              // color=""
+              sx={{ color: "#000000" }}
               value={value}
-              min={180}
-              max={430}
+              min={150}
+              max={450}
+              step={50}
+              marks
+              disableSwap={true}
               onChange={handleChange}
-              valueLabelDisplay="auto"
-              // getAriaValueText={valuetext}
             />
             <div className="flex justify-end space-x-2">
               <input

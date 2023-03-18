@@ -7,6 +7,7 @@ export const initialState = {
   cartShow: false,
   myCart: [],
   filterShow: false,
+  rangeFilter: [150, 450],
 };
 
 export const productReducer = (state, action) => {
@@ -107,13 +108,18 @@ export const productReducer = (state, action) => {
       };
 
     case actionTypes.CART_ITEM_REMOVE:
-      console.log("del");
       return {
         ...state,
         myCart: [
           ...state.myCart.filter((item) => item.id !== action.payload.id),
         ],
       };
+    case actionTypes.SET_RANGE_FILTER:
+      return {
+        ...state,
+        rangeFilter: [...action.payload],
+      };
+
     default:
       return state;
   }

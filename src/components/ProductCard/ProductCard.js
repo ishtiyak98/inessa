@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Cart from "../../assets/cart.svg";
 import { BsStarFill } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";
@@ -13,10 +13,14 @@ const ProductCard = ({ product }) => {
   const { dispatch } = useContext(AllProductContext);
   const navigate = useNavigate();
   const { addToast } = useToasts();
+  const [clickCount, setClickCount] = useState(0);
 
   const addToCartHandler = (product) => {
-    dispatch({ type: actionTypes.ADD_TO_CART, payload: product });
-    addToast("Product added in the cart!", { appearance: "success" });
+    if (clickCount !== 5) {
+      dispatch({ type: actionTypes.ADD_TO_CART, payload: product });
+      addToast("Product added in the cart!", { appearance: "success" });
+      setClickCount((state) => state + 1);
+    }
   };
   return (
     <div className="cursor-pointer">
@@ -40,7 +44,7 @@ const ProductCard = ({ product }) => {
         )}
 
         <div className="hidden group-hover:block">
-          <div
+          <button
             data-tip
             data-for="CartIcon"
             className="absolute top-4 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
@@ -50,8 +54,8 @@ const ProductCard = ({ product }) => {
             <ReactTooltip place="left" type="dark" effect="solid" id="CartIcon">
               <span>Add to cart</span>
             </ReactTooltip>
-          </div>
-          <div
+          </button>
+          <button
             data-tip
             data-for="sadFace"
             className="absolute top-16 right-4 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
@@ -60,7 +64,7 @@ const ProductCard = ({ product }) => {
             <ReactTooltip place="left" type="dark" effect="solid" id="sadFace">
               <span>Quick View</span>
             </ReactTooltip>
-          </div>
+          </button>
         </div>
       </div>
       <div className="body-font py-4 px-2 space-y-1">

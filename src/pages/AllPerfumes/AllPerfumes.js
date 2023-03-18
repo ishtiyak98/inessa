@@ -21,16 +21,24 @@ const AllPerfumes = () => {
   const [priceLowSort, setPriceLowSort] = useState(false);
   const [priceHighSort, setPriceHighSort] = useState(false);
   const {
-    state: { products, filterShow },
+    state: { products, filterShow, rangeFilter },
     dispatch,
   } = useContext(AllProductContext);
 
-  const allProducts = products;
-
+  const [allProducts, setAllProducts] = useState([...products]);
+  console.log("aall-pro", allProducts);
   useEffect(() => {
+    fetch("products.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllProducts(data);
+        dispatch({ type: actionTypes.FETCHING_SUCCESS, payload: data });
+      })
+      .catch(() => {
+        dispatch({ type: actionTypes.FETCHING_ERROR });
+      });
     window.scrollTo(0, 0);
-  }, []);
-
+  }, [dispatch]);
 
   const handleDefaultSorting = () => {
     setPriceHighSort(false);
@@ -42,6 +50,7 @@ const AllPerfumes = () => {
     fetch("products.json")
       .then((res) => res.json())
       .then((data) => {
+        setAllProducts(data);
         dispatch({ type: actionTypes.FETCHING_SUCCESS, payload: data });
       })
       .catch(() => {
@@ -56,10 +65,10 @@ const AllPerfumes = () => {
     setSortState(false);
     setSortName("Sort by price : low to high");
     const allProductsClone = allProducts;
-    const sortedProducts = allProductsClone.sort(
-      (a, b) => a.current_price - b.current_price
-    );
-    // setAllProducts(sortedProducts);
+    const sortedProducts = allProductsClone
+      .slice()
+      .sort((a, b) => a.current_price - b.current_price);
+    setAllProducts(sortedProducts);
     console.log(sortedProducts);
   };
 
@@ -69,9 +78,10 @@ const AllPerfumes = () => {
     setPriceLowSort(false);
     setSortState(false);
     setSortName("Sort by price : high to low");
-    const sortedProducts = allProducts.sort(
-      (a, b) => b.current_price - a.current_price
-    );
+    const sortedProducts = allProducts
+      .slice()
+      .sort((a, b) => b.current_price - a.current_price);
+    setAllProducts(sortedProducts);
     console.log(sortedProducts);
   };
 
@@ -85,7 +95,7 @@ const AllPerfumes = () => {
       <section className="pt-[20px] lg:pt-[50px] pb-[20px] lg:pb-[100px] px-4 lg:px-28 max-w-[1600px] w-full m-auto">
         <div className="mb-4 lg:mb-10">
           <h4 className="body-font">Home / Shop</h4>
-          <h2 className="heading-font text-4xl uppercase">Shop</h2>
+          <h2 className="heading-font text-4xl lg:text-8xl">Shop</h2>
         </div>
         <div className="flex flex-wrap justify-between items-center mb-10 space-y-2 lg:space-y-0">
           <div
@@ -171,13 +181,19 @@ const AllPerfumes = () => {
               : "grid-cols-2 lg:grid-cols-4 gap-5"
           }`}
         >
-          {allProducts.map((product) =>
-            dataGrid ? (
-              <ProductCard2 key={product.id} product={product}></ProductCard2>
-            ) : (
-              <ProductCard key={product.id} product={product}></ProductCard>
+          {allProducts
+            .filter(
+              (item) =>
+                item.current_price > rangeFilter[0] &&
+                item.current_price < rangeFilter[1]
             )
-          )}
+            .map((product) =>
+              dataGrid ? (
+                <ProductCard2 key={product.id} product={product}></ProductCard2>
+              ) : (
+                <ProductCard key={product.id} product={product}></ProductCard>
+              )
+            )}
         </div>
       </section>
       {filterShow && <FilterBar></FilterBar>}
