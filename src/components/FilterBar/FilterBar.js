@@ -6,7 +6,6 @@ import "./FilterBar.css";
 import Slider from "@mui/material/Slider";
 import { Link } from "react-router-dom";
 import ProductCardSmall from "../ProductCard/ProductCardSmall";
-import { red } from "@mui/material/colors";
 
 const FilterBar = () => {
   const {
@@ -17,7 +16,12 @@ const FilterBar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log("submitted");
+    console.log("submitted", e.target.search.value);
+    dispatch({
+      type: actionTypes.SET_SEARCH_KEYWORDS,
+      payload: e.target.search.value,
+    });
+    dispatch({ type: actionTypes.FILTER_CLOSE });
   };
 
   const handleChange = (event, newValue) => {
@@ -44,7 +48,7 @@ const FilterBar = () => {
           <form onSubmit={handleSearch}>
             <input
               type="text"
-              name=""
+              name="search"
               id=""
               placeholder="Search products..."
               className="outline-none body-font border-[2px]  px-2 py-1"

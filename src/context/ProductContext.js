@@ -30,6 +30,7 @@ const ProductContext = ({ children }) => {
     state,
     dispatch,
   };
+  
   return (
     <AllProductContext.Provider value={value}>
       {children}

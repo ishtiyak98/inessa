@@ -8,6 +8,7 @@ export const initialState = {
   myCart: [],
   filterShow: false,
   rangeFilter: [150, 450],
+  searchKeywords: "",
 };
 
 export const productReducer = (state, action) => {
@@ -119,7 +120,16 @@ export const productReducer = (state, action) => {
         ...state,
         rangeFilter: [...action.payload],
       };
-
+    case actionTypes.SET_SEARCH_KEYWORDS:
+      return {
+        ...state,
+        searchKeywords: action.payload,
+      };
+    case actionTypes.ClEAR_SEARCH_KEYWORDS:
+      return {
+        ...state,
+        searchKeywords: "",
+      };
     default:
       return state;
   }

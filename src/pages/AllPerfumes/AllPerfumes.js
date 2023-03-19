@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { VscSettings } from "react-icons/vsc";
 import { SlArrowDown } from "react-icons/sl";
 import { IoGridSharp } from "react-icons/io5";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FaList } from "react-icons/fa";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Footer from "../../components/Footer/Footer";
@@ -21,7 +22,7 @@ const AllPerfumes = () => {
   const [priceLowSort, setPriceLowSort] = useState(false);
   const [priceHighSort, setPriceHighSort] = useState(false);
   const {
-    state: { products, filterShow, rangeFilter },
+    state: { products, filterShow, rangeFilter, searchKeywords },
     dispatch,
   } = useContext(AllProductContext);
 
@@ -98,13 +99,30 @@ const AllPerfumes = () => {
           <h2 className="heading-font text-4xl lg:text-8xl">Shop</h2>
         </div>
         <div className="flex flex-wrap justify-between items-center mb-10 space-y-2 lg:space-y-0">
-          <div
-            className="flex items-center space-x-2 hover:cursor-pointer"
-            onClick={() => dispatch({ type: actionTypes.FILTER_OPEN })}
-          >
-            <VscSettings className="rotate-90 text-xl"></VscSettings>
-            <h4 className="body-font font-medium">Filter Products</h4>
+          <div className=" flex space-x-8">
+            <div
+              className="flex items-center space-x-2 hover:cursor-pointer"
+              onClick={() => dispatch({ type: actionTypes.FILTER_OPEN })}
+            >
+              <VscSettings className="rotate-90 text-xl"></VscSettings>
+              <h4 className="body-font font-medium">Filter Products</h4>
+            </div>
+            {searchKeywords && (
+              <div
+                className="flex items-center space-x-1 hover:cursor-pointer bg-gray-200 p-2 rounded-full"
+                onClick={() =>
+                  dispatch({ type: actionTypes.ClEAR_SEARCH_KEYWORDS })
+                }
+              >
+                <IoIosCloseCircleOutline className="text-2xl cursor-pointer"></IoIosCloseCircleOutline>
+
+                <h4 className="body-font font-medium">
+                  Search Result for: {searchKeywords}{" "}
+                </h4>
+              </div>
+            )}
           </div>
+
           <div className="w-full lg:w-auto flex justify-between items-center lg:space-x-10">
             <div className="relative">
               <div
@@ -182,10 +200,13 @@ const AllPerfumes = () => {
           }`}
         >
           {allProducts
+            .filter((item) =>
+              item.name.toLowerCase().includes(searchKeywords.toLowerCase())
+            )
             .filter(
               (item) =>
-                item.current_price > rangeFilter[0] &&
-                item.current_price < rangeFilter[1]
+                item.current_price >= rangeFilter[0] &&
+                item.current_price <= rangeFilter[1]
             )
             .map((product) =>
               dataGrid ? (
@@ -193,6 +214,15 @@ const AllPerfumes = () => {
               ) : (
                 <ProductCard key={product.id} product={product}></ProductCard>
               )
+            )}
+
+          {allProducts.filter((item) =>
+            item.name.toLowerCase().includes(searchKeywords.toLowerCase())
+          ).length === 0 &&
+            searchKeywords && (
+              <div className="py-16">
+                <h2 className="text-4xl font-medium">No Products Found!</h2>
+              </div>
             )}
         </div>
       </section>
@@ -204,5 +234,3 @@ const AllPerfumes = () => {
 
 export default AllPerfumes;
 
-//grid grid-cols-1 lg:grid-cols-4 gap-4
-//<ProductCard key={product.id} product={product}></ProductCard>
