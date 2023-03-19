@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../../assets/asset 0.png";
 import CartImage from "../../assets/cart.svg";
 import User from "../../assets/user.svg";
@@ -15,6 +15,7 @@ const Navbar = () => {
     state: { cartShow, myCart },
     dispatch,
   } = useContext(AllProductContext);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
   return (
     <>
       <nav className="body-font sticky top-0 z-20 bg-white shadow-sm text-sm font-medium flex justify-between items-center px-4 lg:px-20 py-4 lg:py-8">
@@ -180,11 +181,66 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className="block lg:hidden bg-black p-3 cursor-pointer">
+          <div
+            className="block lg:hidden bg-black p-3 cursor-pointer"
+            onClick={() => setOpenMobileMenu(!openMobileMenu)}
+          >
             <FiMenu className="text-xl text-white"></FiMenu>
           </div>
         </div>
       </nav>
+      {openMobileMenu && (
+        <motion.div
+          className="lg:hidden px-4 py-2 space-x-8 absolute w-full bg-white z-10"
+          initial={{ y: "-100%", opacity: 0 }}
+          animate={{ y: "0px", opacity: 1 }}
+          translate={{
+            type: "spring",
+            stiffness: 150,
+            damping: 10,
+            delay: 0,
+          }}
+        >
+          <div className="flex flex-col">
+            <Link
+              className="uppercase py-1 inline-block cursor-pointer"
+              to={"/shop"}
+            >
+              buy perfumes
+            </Link>
+            <Link
+              className="uppercase py-1 inline-block cursor-pointer"
+              to={"/exclusive"}
+            >
+              exclusive
+            </Link>
+            <Link
+              className="uppercase py-1 inline-block cursor-pointer"
+              to={"/women"}
+            >
+              women
+            </Link>
+            <Link
+              className="uppercase py-1 inline-block cursor-pointer"
+              to={"/product-category/men"}
+            >
+              men
+            </Link>
+            <Link
+              className="uppercase py-1 inline-block cursor-pointer"
+              to={"/about"}
+            >
+              about
+            </Link>
+            <Link
+              className="uppercase py-1 inline-block cursor-pointer"
+              to={"/contact"}
+            >
+              contact
+            </Link>
+          </div>
+        </motion.div>
+      )}
 
       {cartShow && <Cart></Cart>}
     </>

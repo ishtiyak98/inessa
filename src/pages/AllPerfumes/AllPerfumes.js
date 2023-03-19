@@ -19,6 +19,7 @@ const AllPerfumes = () => {
   const [dataGrid, setDataGrid] = useState(false);
   const [sortName, setSortName] = useState("Default sorting");
   const [activeDefaultSort, setActiveDefaultSort] = useState(true);
+  const [activePopularity, setActivePopularity] = useState(false);
   const [priceLowSort, setPriceLowSort] = useState(false);
   const [priceHighSort, setPriceHighSort] = useState(false);
   const {
@@ -43,9 +44,10 @@ const AllPerfumes = () => {
 
   const handleDefaultSorting = () => {
     setPriceHighSort(false);
-    setActiveDefaultSort(true);
+    setActiveDefaultSort(false);
     setPriceLowSort(false);
     setSortState(false);
+    setActivePopularity(false);
     setSortName("Default sorting");
 
     fetch("products.json")
@@ -59,11 +61,27 @@ const AllPerfumes = () => {
       });
   };
 
+  const handlePopularity = () => {
+    setActivePopularity(true);
+    setPriceHighSort(false);
+    setActiveDefaultSort(false);
+    setPriceLowSort(false);
+    setSortState(false);
+    setSortName("Sort by popularity");
+    const allProductsClone = allProducts;
+    const sortedProducts = allProductsClone
+      .slice()
+      .sort((a, b) => b.stars - a.stars);
+    setAllProducts(sortedProducts);
+    console.log(sortedProducts);
+  };
+
   const handlePriceLowToHigh = () => {
     setPriceHighSort(false);
     setActiveDefaultSort(false);
     setPriceLowSort(true);
     setSortState(false);
+    setActivePopularity(false);
     setSortName("Sort by price : low to high");
     const allProductsClone = allProducts;
     const sortedProducts = allProductsClone
@@ -78,6 +96,7 @@ const AllPerfumes = () => {
     setActiveDefaultSort(false);
     setPriceLowSort(false);
     setSortState(false);
+    setActivePopularity(false);
     setSortName("Sort by price : high to low");
     const sortedProducts = allProducts
       .slice()
@@ -145,8 +164,14 @@ const AllPerfumes = () => {
                       Default sorting
                     </p>
                   </div>
-                  <div className="">
-                    <p className="body-font text-slate-600 hover:text-white hover:bg-blue-600 px-3 py-1 prevent-select cursor-pointer">
+                  <div className="" onClick={handlePopularity}>
+                  <p
+                      className={`body-font ${
+                        !activePopularity && "text-slate-600"
+                      } hover:text-white hover:bg-blue-600 ${
+                        activePopularity && "bg-blue-600 text-white"
+                      } px-3 py-1 prevent-select cursor-pointer`}
+                    >
                       Sort by popularity
                     </p>
                   </div>
@@ -233,4 +258,3 @@ const AllPerfumes = () => {
 };
 
 export default AllPerfumes;
-
