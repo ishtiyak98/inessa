@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { actionTypes } from "../../state/ProductState/actionTypes";
 import { AllProductContext } from "../../context/ProductContext";
 import FilterBar from "../../components/FilterBar/FilterBar";
+import { Link } from "react-router-dom";
 
 const AllPerfumes = () => {
   const [sortState, setSortState] = useState(false);
@@ -28,7 +29,6 @@ const AllPerfumes = () => {
   } = useContext(AllProductContext);
 
   const [allProducts, setAllProducts] = useState([...products]);
-  console.log("aall-pro", allProducts);
   useEffect(() => {
     fetch("products.json")
       .then((res) => res.json())
@@ -113,9 +113,13 @@ const AllPerfumes = () => {
         <title>Shop - Inessa Perfumes </title>
       </Helmet> */}
       <section className="pt-[20px] lg:pt-[50px] pb-[20px] lg:pb-[100px] px-4 lg:px-28 max-w-[1600px] w-full m-auto">
-        <div className="mb-4 lg:mb-10">
-          <h4 className="body-font">Home / Shop</h4>
-          <h2 className="heading-font text-4xl lg:text-8xl">Shop</h2>
+        <div className="mb-4 space-y-2 lg:mb-10">
+          <h4 className="body-font">
+            <Link to="/">Home</Link> / <Link to="/shop">Shop</Link>
+          </h4>
+          <h2 className="heading-font text-4xl lg:text-8xl">
+            <Link to="/shop">Shop</Link>
+          </h2>
         </div>
         <div className="flex flex-wrap justify-between items-center mb-10 space-y-2 lg:space-y-0">
           <div className=" flex space-x-8">
@@ -128,15 +132,18 @@ const AllPerfumes = () => {
             </div>
             {searchKeywords && (
               <div
-                className="flex items-center space-x-1 hover:cursor-pointer bg-gray-200 p-2 rounded-full"
+                className="flex items-center space-x-1 group hover:cursor-pointer bg-gray-100 py-2 px-4 rounded-full "
                 onClick={() =>
                   dispatch({ type: actionTypes.ClEAR_SEARCH_KEYWORDS })
                 }
               >
-                <IoIosCloseCircleOutline className="text-2xl cursor-pointer"></IoIosCloseCircleOutline>
+                <IoIosCloseCircleOutline className="text-2xl cursor-pointer group-hover:text-red-600"></IoIosCloseCircleOutline>
 
-                <h4 className="body-font font-medium">
-                  Search Result for: {searchKeywords}{" "}
+                <h4 className="body-font text-sm">
+                  Search result for :{" "}
+                  <span className="text-black font-semibold">
+                    {searchKeywords}
+                  </span>
                 </h4>
               </div>
             )}
@@ -165,7 +172,7 @@ const AllPerfumes = () => {
                     </p>
                   </div>
                   <div className="" onClick={handlePopularity}>
-                  <p
+                    <p
                       className={`body-font ${
                         !activePopularity && "text-slate-600"
                       } hover:text-white hover:bg-blue-600 ${

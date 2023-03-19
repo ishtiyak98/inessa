@@ -5,6 +5,7 @@ import { actionTypes } from "../../state/ProductState/actionTypes";
 import { AllProductContext } from "../../context/ProductContext";
 import { MdClose } from "react-icons/md";
 import { HiOutlineTrash } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const {
@@ -12,9 +13,15 @@ const Cart = () => {
     dispatch,
   } = useContext(AllProductContext);
   const [quantity, setQuantity] = useState(0);
+  const navigate = useNavigate();
 
   const quantityChange = (e) => {
     setQuantity(parseInt(e.target.value));
+  };
+
+  const handleViewCart = () => {
+    dispatch({ type: actionTypes.CART_CLOSE });
+    navigate("/cart");
   };
 
   const handleForm = (e) => {
@@ -139,7 +146,10 @@ const Cart = () => {
             </div>
 
             <div className="space-y-3 py-4 px-5">
-              <div className="text-center cursor-pointer border-[2px] border-black text-black py-4 font-semibold tracking-widest text-sm">
+              <div
+                className="text-center cursor-pointer border-[2px] border-black text-black py-4 font-semibold tracking-widest text-sm"
+                onClick={handleViewCart}
+              >
                 VIEW CART
               </div>
               <div className="text-center cursor-pointer bg-black text-white py-4 font-semibold tracking-widest text-sm">
