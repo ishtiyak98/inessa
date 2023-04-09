@@ -16,7 +16,7 @@ import FilterBar from "../../components/FilterBar/FilterBar";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const WomenPerfume = () => {
+const MenPerfume = () => {
   const [sortState, setSortState] = useState(false);
   const [dataGrid, setDataGrid] = useState(false);
   const [sortName, setSortName] = useState("Default sorting");
@@ -29,19 +29,14 @@ const WomenPerfume = () => {
     dispatch,
   } = useContext(AllProductContext);
 
-  const [allProducts, setAllProducts] = useState([...products]);
+  console.log(products);
+  const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllProducts(data);
-        dispatch({ type: actionTypes.FETCHING_SUCCESS, payload: data });
-      })
-      .catch(() => {
-        dispatch({ type: actionTypes.FETCHING_ERROR });
-      });
+    if (products) {
+      setAllProducts(products);
+    }
     window.scrollTo(0, 0);
-  }, [dispatch]);
+  }, [dispatch, products]);
 
   const handleDefaultSorting = () => {
     setPriceHighSort(false);
@@ -116,10 +111,10 @@ const WomenPerfume = () => {
       <section className="pt-[20px] lg:pt-[50px] pb-[20px] lg:pb-[100px] px-4 lg:px-28 max-w-[1600px] w-full m-auto">
         <div className="mb-4 space-y-2 lg:mb-10">
           <h4 className="body-font">
-            <Link to="/">Home</Link> / <Link to="/shop">Shop</Link>
+            <Link to="/">Home</Link> / <Link to="/shop">Men</Link>
           </h4>
           <h2 className="heading-font text-4xl lg:text-8xl">
-            <Link to="/shop">Shop</Link>
+            <Link to="/shop">Men</Link>
           </h2>
         </div>
         <div className="flex flex-wrap justify-between items-center mb-10 space-y-2 lg:space-y-0">
@@ -242,7 +237,7 @@ const WomenPerfume = () => {
             .filter((item) =>
               item.name.toLowerCase().includes(searchKeywords.toLowerCase())
             )
-            .filter((item) => item.category.includes("women"))
+            .filter((item) => item.category.includes("men"))
             .filter(
               (item) =>
                 item.current_price >= rangeFilter[0] &&
@@ -272,4 +267,4 @@ const WomenPerfume = () => {
   );
 };
 
-export default WomenPerfume;
+export default MenPerfume;

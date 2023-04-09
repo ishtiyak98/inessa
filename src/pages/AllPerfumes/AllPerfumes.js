@@ -29,19 +29,14 @@ const AllPerfumes = () => {
     dispatch,
   } = useContext(AllProductContext);
 
-  const [allProducts, setAllProducts] = useState([...products]);
+  console.log(products);
+  const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllProducts(data);
-        dispatch({ type: actionTypes.FETCHING_SUCCESS, payload: data });
-      })
-      .catch(() => {
-        dispatch({ type: actionTypes.FETCHING_ERROR });
-      });
+    if (products) {
+      setAllProducts(products);
+    }
     window.scrollTo(0, 0);
-  }, [dispatch]);
+  }, [dispatch, products]);
 
   const handleDefaultSorting = () => {
     setPriceHighSort(false);
@@ -220,12 +215,12 @@ const AllPerfumes = () => {
                 ></IoGridSharp>
               </motion.div>
               <motion.div whileTap={{ scale: 0.65 }}>
-              <FaList
-                className={`text-xl cursor-pointer ${
-                  dataGrid ? "text-black" : "text-gray-400"
-                } `}
-                onClick={() => setDataGrid(true)}
-              ></FaList>
+                <FaList
+                  className={`text-xl cursor-pointer ${
+                    dataGrid ? "text-black" : "text-gray-400"
+                  } `}
+                  onClick={() => setDataGrid(true)}
+                ></FaList>
               </motion.div>
             </div>
           </div>

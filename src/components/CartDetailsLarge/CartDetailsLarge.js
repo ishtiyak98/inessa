@@ -38,6 +38,16 @@ const CartDetailsLarge = () => {
               </tr>
             </thead>
             <tbody>
+              {myCart.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={5}
+                    className="border-b text-lg text-center py-4 font-semibold"
+                  >
+                    Your Cart is empty!
+                  </td>
+                </tr>
+              )}
               {myCart
                 .sort((x, y) => x.cartPosition - y.cartPosition)
                 .map((item) => (

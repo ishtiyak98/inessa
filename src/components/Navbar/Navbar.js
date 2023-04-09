@@ -49,7 +49,7 @@ const Navbar = () => {
                     delay: 0.2,
                   }}
                 >
-                  <Link to={"/exclusive"}>exclusive</Link>
+                  <Link to={"/shop/exclusive"}>exclusive</Link>
                 </motion.div>
                 <motion.div
                   initial={{ y: "-100vw" }}
@@ -77,7 +77,7 @@ const Navbar = () => {
                     delay: 0.6,
                   }}
                 >
-                  <Link to={"/product-category/men"}>men</Link>
+                  <Link to={"/men"}>men</Link>
                 </motion.div>
               </div>
             </div>
@@ -224,7 +224,7 @@ const Navbar = () => {
             </Link>
             <Link
               className="uppercase py-2 inline-block cursor-pointer"
-              to={"/product-category/men"}
+              to={"/men"}
             >
               men
             </Link>

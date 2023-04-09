@@ -7,6 +7,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import ViewCartDetails from "./pages/ViewCartDetails/ViewCartDetails";
 import WomenPerfume from "./pages/WomenPerfume/WomenPerfume";
 import { Toaster } from "react-hot-toast";
+import MenPerfume from "./pages/MenPerfume/MenPerfume";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/shop" element={<AllPerfumes></AllPerfumes>}></Route>
           <Route path="/exclusive" element={<Home></Home>}></Route>
           <Route path="/women" element={<WomenPerfume></WomenPerfume>}></Route>
-          <Route path="/product-category/men" element={<Home></Home>}></Route>
+          <Route path="/men" element={<MenPerfume></MenPerfume>}></Route>
           <Route
             path="/product_:id"
             element={<ProductDetails></ProductDetails>}
