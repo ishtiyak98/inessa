@@ -12,7 +12,8 @@ import { FaCcDiscover } from "react-icons/fa";
 import { FaCcPaypal } from "react-icons/fa";
 import { FaCcApplePay } from "react-icons/fa";
 import { actionTypes } from "../../state/ProductState/actionTypes";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-hot-toast";
+
 
 const ProductDetails = () => {
   const {
@@ -21,7 +22,7 @@ const ProductDetails = () => {
   } = useContext(AllProductContext);
   const { id } = useParams();
   const [onImgHover, setOnImgHover] = useState(false);
-  const { addToast } = useToasts();
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -47,7 +48,7 @@ const ProductDetails = () => {
       type: actionTypes.ADD_TO_CART,
       payload: { ...productDetails, trigger: true, quantity: quantity },
     });
-    // addToast("Product added in the cart!", { appearance: "success" });
+    toast.success("Product added in the cart!")
   };
 
   const images = productDetails?.more_img?.map((item) => {

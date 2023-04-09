@@ -3,7 +3,6 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import "./Cart.css";
 import { actionTypes } from "../../state/ProductState/actionTypes";
 import { AllProductContext } from "../../context/ProductContext";
-import { MdClose } from "react-icons/md";
 import { HiOutlineTrash } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 

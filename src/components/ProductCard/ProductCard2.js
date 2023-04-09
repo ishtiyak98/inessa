@@ -7,6 +7,7 @@ import ReactTooltip from "react-tooltip";
 import { useNavigate } from "react-router-dom";
 import { AllProductContext } from "../../context/ProductContext";
 import { actionTypes } from "../../state/ProductState/actionTypes";
+import { toast } from "react-hot-toast";
 
 const ProductCard2 = ({ product }) => {
   const { dispatch } = useContext(AllProductContext);
@@ -15,7 +16,10 @@ const ProductCard2 = ({ product }) => {
     <div className="flex lg:items-center space-x-5">
       <div>
         <div className="relative group cursor-pointer w-[120px] lg:w-[210px]">
-          <div className="overflow-hidden" onClick={() => navigate(`/product_${product.id}`)}>
+          <div
+            className="overflow-hidden"
+            onClick={() => navigate(`/product_${product.id}`)}
+          >
             <img
               src={product.product_img}
               alt="product_img"
@@ -35,9 +39,10 @@ const ProductCard2 = ({ product }) => {
               data-tip
               data-for="CartIcon"
               className="absolute top-4 right-3 shadow-md bg-[#fcfcfc] hover:bg-white inline-block p-2 rounded-full cursor-pointer"
-              onClick={() =>
-                dispatch({ type: actionTypes.ADD_TO_CART, payload: product })
-              }
+              onClick={() => {
+                dispatch({ type: actionTypes.ADD_TO_CART, payload: product });
+                toast.success("Product added in the cart!");
+              }}
             >
               <img src={Cart} alt="" width={16} />
               <ReactTooltip

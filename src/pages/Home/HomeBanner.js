@@ -3,6 +3,21 @@ import styles from "./HomeBanner.module.css";
 import { motion } from "framer-motion";
 
 const HomeBanner = () => {
+  const btnVariant = {
+    hide: {
+      x: "-100vw",
+    },
+    visible: {
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        delay: 1,
+      },
+    },
+  };
+
   return (
     <section
       className={`h-[90vh] bg-slate-500 flex justify-center items-center ${styles.banner_background}`}
@@ -83,16 +98,11 @@ const HomeBanner = () => {
           </div>
           <motion.div
             className="uppercase body-font font-medium px-6 py-3 bg-black text-white inline-block tracking-[2px] hover:cursor-pointer"
-            initial={{ x: "-100vw" }}
-            animate={{
-              x: "0px",
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 20,
-              delay: 1,
-            }}
+            initial="hide"
+            animate="visible"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            variants={btnVariant}
           >
             signup now
           </motion.div>

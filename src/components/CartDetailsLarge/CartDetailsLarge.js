@@ -43,12 +43,12 @@ const CartDetailsLarge = () => {
                 .map((item) => (
                   <tr key={item.id}>
                     <td className="px-4 py-2 border-b">
-                      <img src={item.product_img} alt="" width={60} />
+                      <img src={item.product_img} alt="" width={90} />
                     </td>
-                    <td className="border-b">{item.name}</td>
-                    <td className="border-b">{item.current_price}</td>
-                    <td className="border-b">
-                      <div className="body-font text-sm">
+                    <td className="border-b text-lg">{item.name}</td>
+                    <td className="border-b text-lg">${item.current_price}</td>
+                    <td className="border-b text-lg">
+                      <div className="body-font text-md">
                         <form onSubmit={handleForm}>
                           <button
                             name="minusButton"
@@ -66,7 +66,6 @@ const CartDetailsLarge = () => {
                                     }
                               )
                             }
-                            // disabled={item.quantity === 0}
                           >
                             -
                           </button>
@@ -77,7 +76,7 @@ const CartDetailsLarge = () => {
                             min="0"
                             max="5"
                             disabled={item.quantity === 5}
-                            className="w-[50px] mb-0 px-2 py-1  text-center outline-none border-t border-b"
+                            className="w-[50px] mb-0 px-2 py-1 text-center outline-none border-t border-b"
                           />
                           <button
                             name="plusButton"
@@ -95,10 +94,10 @@ const CartDetailsLarge = () => {
                         </form>
                       </div>
                     </td>
-                    <td className="border-b">{item.buyingPrice}</td>
+                    <td className="border-b text-lg">${item.buyingPrice}</td>
                     <td className="border-b px-4">
                       <p
-                        className="text-xl text-gray-400 flex justify-end cursor-pointer hover:text-red-600"
+                        className="text-2xl text-gray-400 flex justify-end cursor-pointer hover:text-red-600"
                         onClick={() =>
                           dispatch({
                             type: actionTypes.CART_ITEM_REMOVE,

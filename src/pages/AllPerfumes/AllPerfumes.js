@@ -14,6 +14,7 @@ import { actionTypes } from "../../state/ProductState/actionTypes";
 import { AllProductContext } from "../../context/ProductContext";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const AllPerfumes = () => {
   const [sortState, setSortState] = useState(false);
@@ -122,20 +123,22 @@ const AllPerfumes = () => {
           </h2>
         </div>
         <div className="flex flex-wrap justify-between items-center mb-10 space-y-2 lg:space-y-0">
-          <div className=" flex space-x-8">
-            <div
+          <div className="flex space-x-8">
+            <motion.div
               className="flex items-center space-x-2 hover:cursor-pointer"
               onClick={() => dispatch({ type: actionTypes.FILTER_OPEN })}
+              whileTap={{ scale: 0.65 }}
             >
               <VscSettings className="rotate-90 text-xl"></VscSettings>
               <h4 className="body-font font-medium">Filter Products</h4>
-            </div>
+            </motion.div>
             {searchKeywords && (
-              <div
+              <motion.div
                 className="flex items-center space-x-1 group hover:cursor-pointer bg-gray-100 py-2 px-4 rounded-full "
                 onClick={() =>
                   dispatch({ type: actionTypes.ClEAR_SEARCH_KEYWORDS })
                 }
+                whileTap={{ scale: 0.65 }}
               >
                 <IoIosCloseCircleOutline className="text-2xl cursor-pointer group-hover:text-red-600"></IoIosCloseCircleOutline>
 
@@ -145,7 +148,7 @@ const AllPerfumes = () => {
                     {searchKeywords}
                   </span>
                 </h4>
-              </div>
+              </motion.div>
             )}
           </div>
 
@@ -208,18 +211,22 @@ const AllPerfumes = () => {
               )}
             </div>
             <div className="flex items-center space-x-4">
-              <IoGridSharp
-                className={`text-xl cursor-pointer ${
-                  dataGrid ? "text-gray-400" : "text-black"
-                } `}
-                onClick={() => setDataGrid(false)}
-              ></IoGridSharp>
+              <motion.div whileTap={{ scale: 0.65 }}>
+                <IoGridSharp
+                  className={`text-xl cursor-pointer ${
+                    dataGrid ? "text-gray-400" : "text-black"
+                  } `}
+                  onClick={() => setDataGrid(false)}
+                ></IoGridSharp>
+              </motion.div>
+              <motion.div whileTap={{ scale: 0.65 }}>
               <FaList
                 className={`text-xl cursor-pointer ${
                   dataGrid ? "text-black" : "text-gray-400"
                 } `}
                 onClick={() => setDataGrid(true)}
               ></FaList>
+              </motion.div>
             </div>
           </div>
         </div>

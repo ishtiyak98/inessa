@@ -47,7 +47,7 @@ const CartTotals = () => {
             </form>
           )}
         </div>
-        <div className="px-4">
+        <div className="px-4 pb-4">
           <button className="uppercase block w-full text-center cursor-pointer bg-black text-white py-4 font-semibold tracking-widest text-sm">
             checkout
           </button>
