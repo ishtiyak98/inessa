@@ -14,7 +14,6 @@ import { FaCcApplePay } from "react-icons/fa";
 import { actionTypes } from "../../state/ProductState/actionTypes";
 import { toast } from "react-hot-toast";
 
-
 const ProductDetails = () => {
   const {
     state: { products, myCart },
@@ -22,7 +21,6 @@ const ProductDetails = () => {
   } = useContext(AllProductContext);
   const { id } = useParams();
   const [onImgHover, setOnImgHover] = useState(false);
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,8 +33,6 @@ const ProductDetails = () => {
       : 0
   );
 
-  console.log(quantity);
-
   const quantityChange = (e) => {
     setQuantity(parseInt(e.target.value));
   };
@@ -48,7 +44,7 @@ const ProductDetails = () => {
       type: actionTypes.ADD_TO_CART,
       payload: { ...productDetails, trigger: true, quantity: quantity },
     });
-    toast.success("Product added in the cart!")
+    toast.success("Product added in the cart!");
   };
 
   const images = productDetails?.more_img?.map((item) => {
@@ -112,7 +108,7 @@ const ProductDetails = () => {
                   type="number"
                   value={quantity}
                   onChange={quantityChange}
-                  min="0"
+                  min="1"
                   max="5"
                   disabled={quantity === 5}
                   className="w-[50px] px-2 py-2 mb-0 text-center outline-none border-t border-b"
@@ -129,6 +125,7 @@ const ProductDetails = () => {
                   type="submit"
                   value={"ADD TO CART"}
                   className="px-8 py-2 mx-6 font-bold  text-white bg-gray-900 hover:cursor-pointer"
+                  disabled={quantity <= 0}
                 ></input>
               </form>
               {quantity >= 5 && (

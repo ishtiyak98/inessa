@@ -16,7 +16,7 @@ import FilterBar from "../../components/FilterBar/FilterBar";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const WomenPerfume = () => {
+const ExclusivePerfume = () => {
   const [sortState, setSortState] = useState(false);
   const [dataGrid, setDataGrid] = useState(false);
   const [sortName, setSortName] = useState("Default sorting");
@@ -119,7 +119,7 @@ const WomenPerfume = () => {
             <Link to="/">Home</Link> / <Link to="/shop">Shop</Link>
           </h4>
           <h2 className="heading-font text-4xl lg:text-8xl">
-            <Link to="/shop">Women</Link>
+            <Link to="/shop">Exclusive</Link>
           </h2>
         </div>
         <div className="flex flex-wrap justify-between items-center mb-10 space-y-2 lg:space-y-0">
@@ -242,7 +242,7 @@ const WomenPerfume = () => {
             .filter((item) =>
               item.name.toLowerCase().includes(searchKeywords.toLowerCase())
             )
-            .filter((item) => item.category.includes("women"))
+            .filter((item) => item.category.includes("exclusive"))
             .filter(
               (item) =>
                 item.current_price >= rangeFilter[0] &&
@@ -272,4 +272,4 @@ const WomenPerfume = () => {
   );
 };
 
-export default WomenPerfume;
+export default ExclusivePerfume;

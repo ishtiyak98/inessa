@@ -49,7 +49,7 @@ const Navbar = () => {
                     delay: 0.2,
                   }}
                 >
-                  <Link to={"/shop/exclusive"}>exclusive</Link>
+                  <Link to={"/exclusive"}>exclusive</Link>
                 </motion.div>
                 <motion.div
                   initial={{ y: "-100vw" }}
