@@ -1,0 +1,15 @@
+.heading-bg{
+    background-image: url("../../assets/aboutbg-11.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.about_background{
+    background-image: url("../../assets/bg-13.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    @apply bg-scroll lg:bg-fixed
+}

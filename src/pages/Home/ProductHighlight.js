@@ -8,15 +8,15 @@ const ProductHighlight = () => {
   return (
     <section className="py-[100px] px-5 lg:px-28 max-w-[1600px] w-full m-auto">
       <div className="grid lg:grid-cols-2 items-center">
-        <div className="relative">
+        <div className="relative w-full">
           <div className="absolute h-full flex items-center">
             <img src={UpperImage} className="w-[200px] lg:w-[280px]" alt="" />
           </div>
           <div className="ml-[140px]">
-            <img src={LeftImage} className="" alt="" />
+            <img src={LeftImage} className="w-full" alt="" />
           </div>
         </div>
-        <div className="text-right space-y-10 mt-10 lg:mt-0 ml-4">
+        <div className="text-right space-y-10 mt-10 lg:mt-0 ml-4 ">
           <div className="space-y-5">
             <p className="uppercase heading-font text-lg font-bold tracking-[2px]">
               OUR ORIGINAL PERFUME
@@ -35,15 +35,15 @@ const ProductHighlight = () => {
         </div>
       </div>
       <div className="grid lg:grid-cols-2 items-center mt-14 lg:mt-0">
-        <div className="relative order-first lg:order-last ">
+        <div className="relative order-first lg:order-last w-full">
           <div className="absolute right-0 h-full flex items-center">
             <img src={UpperImage2} className="w-[200px] lg:w-[280px]" alt="" />
           </div>
           <div className="mr-[140px]">
-            <img src={RightImage} alt="" />
+            <img src={RightImage} alt="" className="w-full"/>
           </div>
         </div>
-        <div className="space-y-10 order-last mt-10 lg:mt-0 lg:order-first mr-4">
+        <div className="space-y-10 order-last mt-10 lg:mt-0 lg:order-first mr-4 w-full">
           <div className="space-y-5">
             <p className="uppercase heading-font text-lg font-bold tracking-[2px]">
               EAU DE TOILETTE
