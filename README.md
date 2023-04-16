@@ -24,3 +24,8 @@ Install with npm using CMD
   npm start
 ```
     
+## Screenshot
+
+![Capture](https://user-images.githubusercontent.com/56845656/232305627-39a10e52-8f0b-478e-ab28-a731728c8bb2.PNG)
+
+
