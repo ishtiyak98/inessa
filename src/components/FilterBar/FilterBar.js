@@ -95,9 +95,9 @@ const FilterBar = () => {
           <div className="space-y-2">
             <h2 className="heading-font text-2xl">FILTER BY CATEGORY</h2>
             <div className="flex flex-col font-medium space-y-1">
-              <Link>Exclusive</Link>
-              <Link>Women</Link>
-              <Link>Men</Link>
+              <Link to={"/exclusive"}>Exclusive</Link>
+              <Link to={"/women"}>Women</Link>
+              <Link to={"/men"}>Men</Link>
             </div>
           </div>
 
